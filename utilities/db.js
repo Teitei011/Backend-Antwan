@@ -1,8 +1,9 @@
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
-const ObjectId = mongodb.ObjectId;
-const uri =
-  "mongodb+srv://<username>:<password>@cluster0.mongodb.net/test?retryWrites=true&w=majority";
+const mongoose = require('mongoose');
+
+const MongoClient = mongoose.MongoClient;
+const ObjectId = mongoose.ObjectId;
+// const uri =
+//   "mongodb+srv://<username>:<password>@cluster0.mongodb.net/test?retryWrites=true&w=majority";
 
 
 
@@ -21,14 +22,6 @@ const insertUser = async (user) => {
   await users.insertOne(user);
   client.close();
 };
-
-const user = new User("John Doe");
-user.addExercise(
-  "Chest workout",
-  "3 sets of 10 reps",
-  "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-);
-user.addDiet("Healthy breakfast", "Oatmeal with fruit and nuts");
 
 const updateUser = async (userId, updatedUser) => {
   const client = await MongoClient.connect(uri, { useNewUrlParser: true });
