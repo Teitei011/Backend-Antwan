@@ -1,7 +1,10 @@
-const express = require('express');
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
-const ObjectId = mongodb.ObjectId;
+import express, { json } from 'express';
+import { MongoClient as _MongoClient, ObjectId as _ObjectId } from 'mongodb';
+import { updateUser, deleteUser, insertUser } from './utilities/db.js';
+
+
+const MongoClient = _MongoClient;
+const ObjectId = _ObjectId;
 const app = express();
 const port = 3000;
 const uri = "mongodb+srv://<username>:<password>@cluster0.mongodb.net/test?retryWrites=true&w=majority";
@@ -30,7 +33,7 @@ const insertUser = async (user) => {
   client.close();
 };
 
-app.use(express.json());
+app.use(json());
 
 app.get('/users/:id', async (req, res) => {
   const client = await MongoClient.connect(uri, { useNewUrlParser: true });
