@@ -5,8 +5,6 @@ const ObjectId = mongoose.ObjectId;
 // const uri =
 //   "mongodb+srv://<username>:<password>@cluster0.mongodb.net/test?retryWrites=true&w=majority";
 
-
-
 mongoose.connect('mongodb://localhost/exercise-diet-tracker', {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
@@ -22,6 +20,7 @@ const insertUser = async (user) => {
   await users.insertOne(user);
   client.close();
 };
+
 
 const updateUser = async (userId, updatedUser) => {
   const client = await MongoClient.connect(uri, { useNewUrlParser: true });
@@ -46,7 +45,7 @@ const updatedUser = {
   age: "25",
   gender: "Male",
   height: "180cm",
-  weight: "80kg",
+  weight: ["80kg"],
 
 
   exercises: [

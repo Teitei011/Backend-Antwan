@@ -1,14 +1,14 @@
-import mongoose from "mongoose";
+const { default: mongoose } = require("mongoose");
 const { Schema, model } = mongoose;
 
 const exerciseSchema = new Schema({
     title: {
         type: String,
-        required: true,
+        required: false,
     },
     subtitle: {
         type: String,
-        required: true,
+        required: false,
     },
     video: {
         type: String,
@@ -16,5 +16,4 @@ const exerciseSchema = new Schema({
     },
 })
 
-const Exercise = model("Exercise", exerciseSchema);
-export default Exercise;
+module.exports = mongoose.model("Exercise", exerciseSchema);
