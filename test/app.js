@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use(express.json());
 app.use(routes);
 
-const port = process.env.PORT || 3000;
-app.listen(3000, () => {
-  console.log('HTTP server listening on http://localhost:3000');
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
