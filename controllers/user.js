@@ -1,6 +1,7 @@
 // controllers/user.js
 const User = require('../models/user');
 const mongoose = require('mongoose');
+const Diet = require('../models/diet');
 
 exports.getUsers = async (req, res) => {
   try {
@@ -131,43 +132,61 @@ exports.deleteUserExercise = async (req, res) => {
 
 
 // DIET
-
 exports.addUserDiet = async (req, res) => {
   try {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ message: 'Invalid user id' });
-    }
-
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    if (!user.diets) user.diets = [];
-
-    user.diets.push({
-      title: req.body.title,
-      subtitle: req.body.subtitle,
+    const diet = new Diet({
+      breakfast: req.body.breakfast,
+      postWorkout: req.body.postWorkout,
+      morningSnack: req.body.morningSnack,
+      lunch: req.body.lunch,
+      afternoonSnack: req.body.afternoonSnack,
+      dinner: req.body.dinner,
+      nightSnack: req.body.nightSnack
     });
 
- 
-    const updatedUser = await user.save();
-    res.json(updatedUser);
+    await diet.save();
+
+    user.diet = diet._id;
+    await user.save();
+
+    res.json(user);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
 
 
-
 // edit Diet
+
+
 exports.updateUserDiet = async (req, res) => {
   try {
-    const user = await User.findOneAndUpdate(
-      { _id: req.params.id, "diets._id": req.params.dietId },
-      { $set: { "diets.$": req.body } },
-      { new: true }
-    );
-    if (!user) return res.status(404).json({ message: 'User or diet not found' });
-    res.json(user);
+    const diet = await Diet.findById(req.params.dietId);
+    if (!diet) return res.status(404).json({ message: 'Diet not found' });
+
+    diet.breakfast = req.body.breakfast;
+    diet.postWorkout = req.body.postWorkout;
+    diet.morningSnack = req.body.morningSnack;
+    diet.lunch = req.body.lunch;
+    diet.afternoonSnack = req.body.afternoonSnack;
+    diet.dinner = req.body.dinner;
+    diet.nightSnack = req.body.nightSnack;
+
+    await diet.save();
+    res.json(diet);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+exports.getUserDiet = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).populate('diet');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json(user.diet);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -176,18 +195,11 @@ exports.updateUserDiet = async (req, res) => {
 
 exports.deleteUserDiet = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    const index = user.diets.findIndex(d => d._id.toString() === req.params.dietId);
-    if (index === -1) return res.status(404).json({ message: 'Diet not found' });
-
-    user.diets.splice(index, 1);
-    await user.save();
+    const diet = await Diet.findByIdAndRemove(req.params.dietId);
+    if (!diet) return res.status(404).json({ message: 'Diet not found' });
     res.json({ message: 'Diet deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
-
 
