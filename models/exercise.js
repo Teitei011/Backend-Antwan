@@ -1,10 +1,38 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const exerciseSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  subtitle: { type: String, required: true },
-  link: { type: String, required: true }
+  A: [
+    {
+      title: { required: true, type: String },
+      subtitle: { required: true, type: String },
+    },
+  ],
+  B: [
+    {
+      title: { required: true, type: String },
+      subtitle: { required: true, type: String },
+    },
+  ],
+  C: [
+    {
+      title: { required: true, type: String },
+      subtitle: { required: true, type: String },
+    },
+  ],
+  D: [
+    {
+      title: { required: true, type: String },
+      subtitle: { required: true, type: String },
+    },
+  ],
+  E: [
+    {
+      title: { required: true, type: String },
+      subtitle: { required: true, type: String },
+    },
+  ],
 });
 
-module.exports = mongoose.model('Exercise', exerciseSchema);
+module.exports = mongoose.model("Exercise", exerciseSchema);
 
+module.exports = mongoose.model("Exercise", exerciseSchema);

@@ -8,13 +8,7 @@ const userSchema = new mongoose.Schema({
   dateOfBirth: { type: Date, required: true },
   height: { type: Number, required: true },
   weight: { type: Number, required: true },
-  exercises: [
-    {
-      title: { type: String, required: true },
-      subtitle: { type: String, required: true },
-      link: { type: String, required: true },
-    },
-  ],
+  exercises: { type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' },
 
   diet: { type: mongoose.Schema.Types.ObjectId, ref: 'Diet' },
   admin: { type: Boolean, required: true, default: false },
