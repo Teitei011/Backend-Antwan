@@ -1,69 +1,28 @@
-class User {
-  constructor(name, age, gender, height) {
-    this.name = name;
-    this.age = age;
-    this.gender = gender;
-    this.height = height;
-    this.weight = [];
-    this.startDate = new Date();
-    this.exercises = [];
-    this.diets = [];
-    this.admin = false;
-  }
+const mongoose = require("mongoose");
 
-  addExercise(title, subtitle, videoLink) {
-    this.exercises.push({
-      title,
-      subtitle,
-      videoLink
-    });
-  }
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  googleId: { type: String, required: false },
+  dateOfBirth: { type: Date, required: true },
+  height: { type: Number, required: true },
+  weight: { type: Number, required: true },
+  exercises: [
+    {
+      title: { type: String, required: true },
+      subtitle: { type: String, required: true },
+      link: { type: String, required: true },
+    },
+  ],
 
-  editExercise(index, title, subtitle, videoLink) {
-    this.exercises[index] = {
-      title,
-      subtitle,
-      videoLink
-    };
-  }
+  diets: [
+    {
+      title: { type: String, required: true },
+      subtitle: { type: String, required: true },
+    },
+  ],
+  admin: { type: Boolean, required: true, default: false },
+});
 
-  deleteExercise(index) {
-    this.exercises.splice(index, 1);
-  }
-
-  addDiet(title, subtitle) {
-    this.diets.push({
-      title,
-      subtitle
-    });
-  }
-
-  editDiet(index, title, subtitle) {
-    this.diets[index] = {
-      title,
-      subtitle
-    };
-  }
-
-  deleteDiet(index) {
-    this.diets.splice(index, 1);
-  }
-
-  addWeight(weight) {
-    this.weight.push({
-      weight,
-      date: new Date()
-    });
-  }
-
-  editWeight(index, weight) {
-    this.weight[index] = {
-      weight,
-      date: new Date()
-    };
-  }
-
-  deleteWeight(index) {
-    this.weight.splice(index, 1);
-  }
-}
+module.exports = mongoose.model("User", userSchema);
