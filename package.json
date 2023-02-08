@@ -1,36 +1,22 @@
 {
-  "name": "antwan",
+  "name": "ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "test": "mocha tests/api/users.test.js",
+    "start": "node app.js"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.3",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "express": "^4.18.2",
-    "mongodb": "^5.0.0",
-    "mongoose": "^6.9.0"
+    "mongoose": "^6.9.0",
+    "supertest": "^6.3.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
-  },
-  "description": "",
-  "version": "1.0.0",
-  "main": "server.js",
-  "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Teitei011/Backend-Antwan.git"
-  },
-  "keywords": [
-    "gym",
-    "dieta",
-    "treinos",
-    "saúde"
-  ],
-  "author": "Teitei11",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Teitei011/Backend-Antwan/issues"
-  },
-  "homepage": "https://github.com/Teitei011/Backend-Antwan#readme"
+    "mocha": "^10.2.0"
+  }
 }
