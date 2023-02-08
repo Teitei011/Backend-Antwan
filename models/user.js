@@ -16,12 +16,7 @@ const userSchema = new mongoose.Schema({
     },
   ],
 
-  diets: [
-    {
-      title: { type: String, required: true },
-      subtitle: { type: String, required: true },
-    },
-  ],
+  diet: { type: mongoose.Schema.Types.ObjectId, ref: 'Diet' },
   admin: { type: Boolean, required: true, default: false },
 });
 

@@ -20,10 +20,10 @@ router.delete('/user/:id/exercise/:exerciseId', userController.deleteUserExercis
 
 
 // user diets routes
-// router.get('/user/:id/diets', userController.getUserDiets);
+router.get('/user/:id/diets', userController.getUserDiet);
 router.post('/user/:id/diet', userController.addUserDiet);
-router.patch('/user/:id/diet/:dietId', userController.updateUserDiet);
-router.delete('/user/:id/diet/:dietId', userController.deleteUserDiet);
+router.patch('/diet/:dietId', userController.updateUserDiet);
+router.delete('/diet/:dietId', userController.deleteUserDiet);
 
 // Diet routes
 router.get('/diets', dietController.getDiets);
