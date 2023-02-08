@@ -1,5 +1,6 @@
 // controllers/user.js
 const User = require('../models/user');
+const mongoose = require('mongoose');
 
 exports.getUsers = async (req, res) => {
   try {
@@ -30,7 +31,8 @@ exports.createUser = async (req, res) => {
     height: req.body.height,
     weight: req.body.weight,
     exercises: req.body.exercises,
-    diet: req.body.diet
+    diet: req.body.diet,
+    admin: req.body.admin
   });
 
   try {
@@ -69,9 +71,12 @@ exports.deleteUser = async (req, res) => {
 };
 
 
-
 exports.addUserExercise = async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid user id' });
+    }
+
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
@@ -125,17 +130,30 @@ exports.deleteUserExercise = async (req, res) => {
 
 exports.addUserDiet = async (req, res) => {
   try {
+    console.log(req.body);
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid user id' });
+    }
+
     const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user) return res.status(404).json({ message: 'User not found' });
 
-    user.diet.push(req.body.diet);
-    await user.save();
+    if (!user.diets) user.diets = [];
 
-    res.json(user);
+    user.diets.push({
+      title: req.body.title,
+      subtitle: req.body.subtitle,
+    });
+
+ 
+    const updatedUser = await user.save();
+    res.json(updatedUser);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
+
+
 
 // edit Diet
 exports.updateUserDiet = async (req, res) => {
