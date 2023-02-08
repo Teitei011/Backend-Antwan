@@ -118,8 +118,8 @@ exports.deleteUserExercise = async (req, res) => {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    const index = user.exercises.findIndex(d => d._id.toString() === req.params.dietId);
-    if (index === -1) return res.status(404).json({ message: 'Diet not found' });
+    const index = user.exercises.findIndex(d => d._id.toString() === req.params.exerciseId);
+    if (index === -1) return res.status(404).json({ message: 'Exercise not found' });
 
     user.exercises.splice(index, 1);
     await user.save();
@@ -173,20 +173,21 @@ exports.updateUserDiet = async (req, res) => {
   }
 };
 
-// delete Diet
+
 exports.deleteUserDiet = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    const index = user.diet.findIndex(d => d._id.toString() === req.params.dietId);
+    const index = user.diets.findIndex(d => d._id.toString() === req.params.dietId);
     if (index === -1) return res.status(404).json({ message: 'Diet not found' });
 
-    user.diet.splice(index, 1);
+    user.diets.splice(index, 1);
     await user.save();
     res.json({ message: 'Diet deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
 
