@@ -96,9 +96,9 @@ exports.addUserExercise = async (req, res) => {
 // edit Exercise
 exports.updateUserExercise = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      { $set: { exercise: req.body.exercise } },
+    const user = await User.findOneAndUpdate(
+      { _id: req.params.id, "exercises._id": req.params.exerciseId },
+      { $set: { "exercises.$": req.body } },
       { new: true }
     );
     if (!user) return res.status(404).json({ message: 'User not found' });
@@ -130,7 +130,6 @@ exports.deleteUserExercise = async (req, res) => {
 
 exports.addUserDiet = async (req, res) => {
   try {
-    console.log(req.body);
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Invalid user id' });
     }
