@@ -15,15 +15,15 @@ router.delete('/user/:id', userController.deleteUser);
 
 // router.get('/user/:id/exercise', userController.getUserDiets);
 router.post('/user/:id/exercise', userController.addUserExercise);
-router.patch('/user/:id/exercise/:id', userController.updateUserExercise);
-router.delete('/user/:id/exercise/:id', userController.deleteUserExercise);
+router.patch('/user/:id/exercise/:exerciseId', userController.updateUserExercise);
+router.delete('/user/:id/exercise/:exerciseId', userController.deleteUserExercise);
 
 
 // user diets routes
 // router.get('/user/:id/diets', userController.getUserDiets);
 router.post('/user/:id/diet', userController.addUserDiet);
 router.patch('/user/:id/diet/:dietId', userController.updateUserDiet);
-router.delete('/user/:id/diet/:dietId', userController.deleteUserDiet);
+router.delete('/user/:id/diet/:dietID', userController.deleteUserDiet);
 
 // Diet routes
 router.get('/diets', dietController.getDiets);

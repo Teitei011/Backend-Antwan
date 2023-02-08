@@ -101,12 +101,16 @@ exports.updateUserExercise = async (req, res) => {
       { $set: { "exercises.$": req.body } },
       { new: true }
     );
+
+    console.log(user); // add this line
+
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(user);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
+
 
 // delete Exercise
 exports.deleteUserExercise = async (req, res) => {
@@ -157,17 +161,18 @@ exports.addUserDiet = async (req, res) => {
 // edit Diet
 exports.updateUserDiet = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      { $set: { diet: req.body.diet } },
+    const user = await User.findOneAndUpdate(
+      { _id: req.params.id, "diets._id": req.params.dietId },
+      { $set: { "diets.$": req.body } },
       { new: true }
     );
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    if (!user) return res.status(404).json({ message: 'User or diet not found' });
     res.json(user);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
+
 // delete Diet
 exports.deleteUserDiet = async (req, res) => {
   try {
