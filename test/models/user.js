@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
   height: { type: Number, required: true },
   weight: { type: Number, required: true },
   exercises: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' }],
-  diets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Diet' }]
+  diets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Diet' }],
+  admin: { type: Boolean, required: true, default: false }
 });
 
 module.exports = mongoose.model('User', userSchema)

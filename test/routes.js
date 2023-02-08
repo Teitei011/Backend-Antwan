@@ -14,14 +14,14 @@ router.delete('/user/:id', userController.deleteUser);
 // user exercises routes 
 
 // router.get('/user/:id/exercise', userController.getUserDiets);
-router.post('/user/:id/exercise', userController.addExercise);
+router.post('/user/:id/exercise', userController.addUserExercise);
 router.patch('/user/:id/exercise/:exerciseID', userController.updateUserExercise);
 router.delete('/user/:id/exercise/:exerciseID', userController.deleteUserExercise);
 
 
 // user diets routes
 // router.get('/user/:id/diets', userController.getUserDiets);
-router.post('/user/:id/diet', userController.addDietToUser);
+router.post('/user/:id/diet', userController.addUserDiet);
 router.patch('/user/:id/diet/:dietId', userController.updateUserDiet);
 router.delete('/user/:id/diet/:dietId', userController.deleteUserDiet);
 

@@ -70,7 +70,7 @@ exports.deleteUser = async (req, res) => {
 
 
 
-exports.addExercise = async (req, res) => {
+exports.addUserExercise = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
@@ -123,7 +123,7 @@ exports.deleteUserExercise = async (req, res) => {
 
 // DIET
 
-exports.addDietToUser = async (req, res) => {
+exports.addUserDiet = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
