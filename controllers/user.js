@@ -1,5 +1,6 @@
 // controllers/user.js
 const User = require('../models/user');
+const Exercise = require("../models/exercise");
 const mongoose = require('mongoose');
 const Diet = require('../models/diet');
 
@@ -71,41 +72,23 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-
 exports.addUserExercise = async (req, res) => {
   try {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ message: 'Invalid user id' });
-    }
-
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    user.exercises.push({
-      title: req.body.title,
-      subtitle: req.body.subtitle,
-      link: req.body.link
+    const exercise = new Exercise({
+      A: req.body.A,
+      B: req.body.B,
+      C: req.body.C,
+      D: req.body.D,
+      E: req.body.E
     });
 
-    const updatedUser = await user.save();
-    res.json(updatedUser);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
+    await exercise.save();
+    user.exercises = exercise._id;
+    await user.save();
 
-// edit Exercise
-exports.updateUserExercise = async (req, res) => {
-  try {
-    const user = await User.findOneAndUpdate(
-      { _id: req.params.id, "exercises._id": req.params.exerciseId },
-      { $set: { "exercises.$": req.body } },
-      { new: true }
-    );
-
-    console.log(user); // add this line
-
-    if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(user);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -113,22 +96,36 @@ exports.updateUserExercise = async (req, res) => {
 };
 
 
-// delete Exercise
+exports.updateUserExercise = async (req, res) => {
+  try {
+    const exercise = await Exercise.findById(req.params.exerciseId);
+    if (!exercise) return res.status(404).json({ message: 'Exercise not found' });
+
+    exercise.A = req.body.A;
+    exercise.B = req.body.B;
+    exercise.C = req.body.C;
+    exercise.D = req.body.D;
+    exercise.E = req.body.E;
+
+    await exercise.save();
+    res.json(exercise);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+
 exports.deleteUserExercise = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    const index = user.exercises.findIndex(d => d._id.toString() === req.params.exerciseId);
-    if (index === -1) return res.status(404).json({ message: 'Exercise not found' });
-
-    user.exercises.splice(index, 1);
-    await user.save();
+    const exercise = await Exercise.findByIdAndRemove(req.params.exerciseId);
+    if (!exercise) return res.status(404).json({ message: 'Exercise not found' });
     res.json({ message: 'Exercise deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
+
 
 
 // DIET
