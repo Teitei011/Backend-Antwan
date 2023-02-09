@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema({
   height: { type: Number, required: true },
   weight: { type: Number, required: true },
   exercises: { type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' },
-
   diet: { type: mongoose.Schema.Types.ObjectId, ref: 'Diet' },
   admin: { type: Boolean, required: true, default: false },
 });

@@ -1,5 +1,6 @@
 // controllers/user.js
 const User = require('../models/user');
+const Exercise = require("../models/exercise");
 const mongoose = require('mongoose');
 const Diet = require('../models/diet');
 
@@ -71,28 +72,30 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-
 exports.addUserExercise = async (req, res) => {
   try {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ message: 'Invalid user id' });
-    }
-
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    user.exercises.push({
-      title: req.body.title,
-      subtitle: req.body.subtitle,
-      link: req.body.link
+    const exercise = new Exercise({
+      A: req.body.A,
+      B: req.body.B,
+      C: req.body.C,
+      D: req.body.D,
+      E: req.body.E
     });
 
-    const updatedUser = await user.save();
-    res.json(updatedUser);
+    await exercise.save();
+    user.exercises = exercise._id;
+    await user.save();
+
+    res.json(user);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
+
+
 
 // edit Exercise
 exports.updateUserExercise = async (req, res) => {
