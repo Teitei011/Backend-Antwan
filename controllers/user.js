@@ -96,42 +96,36 @@ exports.addUserExercise = async (req, res) => {
 };
 
 
-
-// edit Exercise
 exports.updateUserExercise = async (req, res) => {
   try {
-    const user = await User.findOneAndUpdate(
-      { _id: req.params.id, "exercises._id": req.params.exerciseId },
-      { $set: { "exercises.$": req.body } },
-      { new: true }
-    );
+    const exercise = await Exercise.findById(req.params.exerciseId);
+    if (!exercise) return res.status(404).json({ message: 'Exercise not found' });
 
-    console.log(user); // add this line
+    exercise.A = req.body.A;
+    exercise.B = req.body.B;
+    exercise.C = req.body.C;
+    exercise.D = req.body.D;
+    exercise.E = req.body.E;
 
-    if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json(user);
+    await exercise.save();
+    res.json(exercise);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
 
 
-// delete Exercise
 exports.deleteUserExercise = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    const index = user.exercises.findIndex(d => d._id.toString() === req.params.exerciseId);
-    if (index === -1) return res.status(404).json({ message: 'Exercise not found' });
-
-    user.exercises.splice(index, 1);
-    await user.save();
+    const exercise = await Exercise.findByIdAndRemove(req.params.exerciseId);
+    if (!exercise) return res.status(404).json({ message: 'Exercise not found' });
     res.json({ message: 'Exercise deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
+
 
 
 // DIET
