@@ -3,7 +3,8 @@ import 'package:best_flutter_ui_templates/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'fitness_app/fitness_app_home_screen.dart';
-import 'navigation_home_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/navigation_home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() async {
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: FitnessAppHomeScreen(),
+      // home: FitnessAppHomeScreen(),
+      home: LoginPage(),
     );
   }
 }
