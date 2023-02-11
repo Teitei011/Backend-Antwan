@@ -16,20 +16,23 @@ class SignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 150, vertical: 12),
-      margin: EdgeInsets.symmetric(horizontal: 15),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: TextButton(
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 16,
+    return GestureDetector(
+      onTap: () => print("Sign in button pressed"),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 150, vertical: 12),
+        margin: EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: TextButton(
+          onPressed: onPressed,
+          child: Text(
+            text,
+            style: TextStyle(
+              color: textColor,
+              fontSize: 16,
+            ),
           ),
         ),
       ),
