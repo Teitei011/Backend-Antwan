@@ -4,6 +4,11 @@ const userController = require('./controllers/user');
 const dietController = require('./controllers/diet');
 const exerciseController = require('./controllers/exercise');
 
+// Login route
+router.post('/login', userController.login);
+router.post('/signup', userController.signUp);
+
+
 // User routes
 router.get('/users', userController.getUsers);
 router.get('/user/:id', userController.getUser);

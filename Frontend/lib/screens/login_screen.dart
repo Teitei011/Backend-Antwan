@@ -1,8 +1,9 @@
+import 'package:best_flutter_ui_templates/fitness_app/fitness_app_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../app_theme.dart';
-import '../fitness_app/components/sign_in_button.dart';
+import '../fitness_app/components/button.dart';
 import '../fitness_app/components/sign_in_google.dart';
 
 class LoginPage extends StatelessWidget {
@@ -100,12 +101,11 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 15),
 
                 //sign in button
-
-                SignInButton(
-                  text: "Sign in",
-                  onPressed: () {},
+                Button(
+                  press: () {},
+                  text: 'Sign in',
+                  nextPage: FitnessAppHomeScreen(),
                 ),
-
                 // or continue with
 
                 const SizedBox(height: 15),

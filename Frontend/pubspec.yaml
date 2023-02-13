@@ -33,6 +33,7 @@ dependencies:
     intl: ^0.17.0
     animations: ^2.0.3
     lottie: ^2.2.0
+    http: ^0.13.5
 
 dev_dependencies:
     flutter_test:
