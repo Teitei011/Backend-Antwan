@@ -60,7 +60,7 @@ class _MealsListViewState extends State<MealsListView>
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   final int count =
-                      mealsListData.length > 10 ? 10 : mealsListData.length;
+                      mealsListData.length > 4 ? 4 : mealsListData.length;
                   final Animation<double> animation =
                       Tween<double>(begin: 0.0, end: 1.0).animate(
                           CurvedAnimation(
@@ -223,7 +223,8 @@ class MealsView extends StatelessWidget {
                                       padding: const EdgeInsets.all(6.0),
                                       child: Icon(
                                         Icons.add,
-                                        color: HexColor(mealsListData!.endColor),
+                                        color:
+                                            HexColor(mealsListData!.endColor),
                                         size: 24,
                                       ),
                                     ),

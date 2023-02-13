@@ -1,6 +1,5 @@
 import 'package:best_flutter_ui_templates/fitness_app/ui_view/body_measurement.dart';
 import 'package:best_flutter_ui_templates/fitness_app/ui_view/glass_view.dart';
-import 'package:best_flutter_ui_templates/fitness_app/ui_view/OQueFoiComido.dart';
 import 'package:best_flutter_ui_templates/fitness_app/ui_view/title_view.dart';
 import 'package:best_flutter_ui_templates/fitness_app/fitness_app_theme.dart';
 import 'package:best_flutter_ui_templates/fitness_app/my_diary/meals_list_view.dart';
@@ -74,8 +73,8 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
 
     listViews.add(
       TitleView(
-        titleTxt: 'Meals today',
-        subTxt: 'Customize',
+        titleTxt: 'O que comer hoje?',
+        subTxt: 'Sugestões',
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve:

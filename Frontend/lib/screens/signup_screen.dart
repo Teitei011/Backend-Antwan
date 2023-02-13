@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../app_theme.dart';
-import '../fitness_app/components/sign_in_button.dart';
 import '../fitness_app/components/button.dart';
 import '../fitness_app/components/sign_in_google.dart';
 

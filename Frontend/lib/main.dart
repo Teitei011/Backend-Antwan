@@ -7,6 +7,8 @@ import 'fitness_app/fitness_app_home_screen.dart';
 import 'screens/login_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
+import 'screens/profile_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
@@ -37,6 +39,12 @@ class MyApp extends StatelessWidget {
       ),
       // home: FitnessAppHomeScreen(),
       home: SignUpPage(),
+      // home: ProfilePage(
+      //     Nome: "Stefan Taiguara",
+      //     Email: "stefantleal14@gmail.com",
+      //     dateOfBirth: "24/08/1998",
+      //     height: "169",
+      //     weight: "53"),
     );
   }
 }

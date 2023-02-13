@@ -18,7 +18,15 @@ class MealsListData {
   static List<MealsListData> tabIconsList = <MealsListData>[
     MealsListData(
       imagePath: 'assets/fitness_app/breakfast.png',
-      titleTxt: 'Breakfast',
+      titleTxt: 'Café da manhã',
+      kacl: 525,
+      meals: <String>['Bread,', 'Peanut butter,', 'Apple'],
+      startColor: '#FA7D82',
+      endColor: '#FFB295',
+    ),
+    MealsListData(
+      imagePath: 'assets/fitness_app/breakfast.png',
+      titleTxt: 'Pós-treino',
       kacl: 525,
       meals: <String>['Bread,', 'Peanut butter,', 'Apple'],
       startColor: '#FA7D82',
@@ -26,7 +34,7 @@ class MealsListData {
     ),
     MealsListData(
       imagePath: 'assets/fitness_app/lunch.png',
-      titleTxt: 'Lunch',
+      titleTxt: 'Almoço',
       kacl: 602,
       meals: <String>['Salmon,', 'Mixed veggies,', 'Avocado'],
       startColor: '#738AE6',
@@ -34,7 +42,23 @@ class MealsListData {
     ),
     MealsListData(
       imagePath: 'assets/fitness_app/snack.png',
-      titleTxt: 'Snack',
+      titleTxt: 'Lanche da manhã',
+      kacl: 0,
+      meals: <String>['Recommend:', '800 kcal'],
+      startColor: '#FE95B6',
+      endColor: '#FF5287',
+    ),
+    MealsListData(
+      imagePath: 'assets/fitness_app/snack.png',
+      titleTxt: 'Lanche da tarde',
+      kacl: 0,
+      meals: <String>['Recommend:', '800 kcal'],
+      startColor: '#FE95B6',
+      endColor: '#FF5287',
+    ),
+    MealsListData(
+      imagePath: 'assets/fitness_app/snack.png',
+      titleTxt: 'Lanche da noite',
       kacl: 0,
       meals: <String>['Recommend:', '800 kcal'],
       startColor: '#FE95B6',
@@ -42,7 +66,7 @@ class MealsListData {
     ),
     MealsListData(
       imagePath: 'assets/fitness_app/dinner.png',
-      titleTxt: 'Dinner',
+      titleTxt: 'Janta',
       kacl: 0,
       meals: <String>['Recommend:', '703 kcal'],
       startColor: '#6F72CA',
