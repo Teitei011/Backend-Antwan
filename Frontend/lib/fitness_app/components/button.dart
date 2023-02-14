@@ -1,4 +1,4 @@
-import 'package:best_flutter_ui_templates/screens/login_screen.dart';
+import 'package:naturalteam/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../app_theme.dart';

@@ -1,9 +1,8 @@
-import 'package:best_flutter_ui_templates/screens/login_screen.dart';
+import 'package:naturalteam/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../app_theme.dart';
-import '../fitness_app/components/sign_in_button.dart';
 import '../fitness_app/components/button.dart';
 import '../fitness_app/components/sign_in_google.dart';
 

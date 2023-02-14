@@ -1,5 +1,5 @@
-import 'package:best_flutter_ui_templates/fitness_app/fitness_app_home_screen.dart';
-import 'package:best_flutter_ui_templates/introduction_animation/introduction_animation_screen.dart';
+import 'package:naturalteam/screens/fitness_app_home_screen.dart';
+import 'package:naturalteam/introduction_animation/introduction_animation_screen.dart';
 import 'package:flutter/widgets.dart';
 
 class HomeList {

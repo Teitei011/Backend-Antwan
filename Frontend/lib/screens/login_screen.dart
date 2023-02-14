@@ -1,4 +1,4 @@
-import 'package:best_flutter_ui_templates/fitness_app/fitness_app_home_screen.dart';
+import 'package:naturalteam/screens/fitness_app_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
