@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
       ),
       // home: FitnessAppHomeScreen(),
-      home: SignUpPage(),
+      home: FitnessAppHomeScreen(),
     );
   }
 }
