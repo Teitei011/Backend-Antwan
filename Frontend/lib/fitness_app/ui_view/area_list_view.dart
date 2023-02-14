@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../components/exercise_card.dart';
 import '../fitness_app_theme.dart';
 
 class AreaListView extends StatefulWidget {
@@ -96,23 +97,11 @@ class _AreaListViewState extends State<AreaListView>
                         ),
                       );
                       animationController?.forward();
-                      return Column(
-                        children: [
-                          Text(
-                            list[0][index],
-                            style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          AreaView(
-                            imagepath: list[1][index],
-                            animation: animation,
-                            animationController: animationController!,
-                          ),
-                        ],
-                      );
+                      return ExerciseCard(
+                          index: index,
+                          list: list,
+                          animation: animation,
+                          animationController: animationController);
                     },
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
