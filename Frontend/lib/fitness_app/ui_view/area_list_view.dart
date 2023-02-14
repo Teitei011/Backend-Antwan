@@ -17,20 +17,39 @@ class _AreaListViewState extends State<AreaListView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
 
-  List<String> areaListName = <String>[
-    'Costas',
-    'Ombro',
-    'Biceps e Triceps',
-    'Peito',
-    'Perna',
+  // List<String> areaListName = <String>[
+  //   'Costas',
+  //   'Ombro',
+  //   'Biceps e Triceps',
+  //   'Peito',
+  //   'Perna',
+  // ];
+  // List<String> areaListData = <String>[
+  //   'assets/images/back.png',
+  //   'assets/images/back2.png',
+  //   'assets/images/biceps.png',
+  //   'assets/images/chest.png',
+  //   'assets/images/leg.png',
+  // ];
+
+  List list = [
+    [
+      'Costas',
+      'Ombro',
+      'Biceps, Triceps',
+      'Peito',
+      'Perna',
+    ],
+    [
+      'assets/images/back.png',
+      'assets/images/back2.png',
+      'assets/images/biceps.png',
+      'assets/images/chest.png',
+      'assets/images/leg.png'
+    ]
   ];
-  List<String> areaListData = <String>[
-    'assets/images/back.png',
-    'assets/images/back2.png',
-    'assets/images/biceps.png',
-    'assets/images/chest.png',
-    'assets/images/leg.png',
-  ];
+
+  // create a list with the names of the areas and the imagesPaths
 
   @override
   void initState() {
@@ -65,9 +84,9 @@ class _AreaListViewState extends State<AreaListView>
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: List<Widget>.generate(
-                    areaListData.length,
+                    list[0].length,
                     (int index) {
-                      final int count = areaListData.length;
+                      final int count = list[0].length;
                       final Animation<double> animation =
                           Tween<double>(begin: 0.0, end: 1.0).animate(
                         CurvedAnimation(
@@ -80,7 +99,7 @@ class _AreaListViewState extends State<AreaListView>
                       return Column(
                         children: [
                           Text(
-                            areaListName[index],
+                            list[0][index],
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
@@ -88,7 +107,7 @@ class _AreaListViewState extends State<AreaListView>
                             height: 5,
                           ),
                           AreaView(
-                            imagepath: areaListData[index],
+                            imagepath: list[1][index],
                             animation: animation,
                             animationController: animationController!,
                           ),
