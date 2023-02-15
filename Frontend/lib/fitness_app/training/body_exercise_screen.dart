@@ -8,15 +8,19 @@ class BodyExerciseScreen extends StatelessWidget {
     required this.imagePath,
     required this.titleTxt,
     required this.exercises,
+    required this.exerciseType,
   }) : super(key: key);
 
   final String imagePath;
   final String titleTxt;
   final Exercise exercises;
+  final String exerciseType;
 
   @override
   Widget build(BuildContext context) {
     final bool thereIsData = false;
+
+    print("Tamanho da lista:  $exercises.exercises[exerciseType]!.length");
 
     return Container(
       color: Colors.white,
@@ -62,9 +66,10 @@ class BodyExerciseScreen extends StatelessWidget {
                 child: !thereIsData
                     ? ListView.builder(
                         shrinkWrap: true,
-                        itemCount: exercises.exercises['B']!.length,
+                        itemCount: exercises.exercises[exerciseType]!.length,
                         itemBuilder: (context, index) {
-                          final exercise = exercises.exercises['B']![index];
+                          final exercise =
+                              exercises.exercises[exerciseType]![index];
                           print("exercise: $exercise");
                           return Material(
                             child: ListTile(

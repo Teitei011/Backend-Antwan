@@ -22,7 +22,7 @@ class ExerciseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("Pressed: " + list[1][index]);
+        print("Pressed: " + list[2][index]);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -30,6 +30,7 @@ class ExerciseCard extends StatelessWidget {
               imagePath: list[1][index],
               titleTxt: list[0][index],
               exercises: exerciciosTemplate,
+              exerciseType: list[2][index],
             ),
           ),
         );
