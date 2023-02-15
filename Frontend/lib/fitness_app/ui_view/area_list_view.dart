@@ -18,21 +18,6 @@ class _AreaListViewState extends State<AreaListView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
 
-  // List<String> areaListName = <String>[
-  //   'Costas',
-  //   'Ombro',
-  //   'Biceps e Triceps',
-  //   'Peito',
-  //   'Perna',
-  // ];
-  // List<String> areaListData = <String>[
-  //   'assets/images/back.png',
-  //   'assets/images/back2.png',
-  //   'assets/images/biceps.png',
-  //   'assets/images/chest.png',
-  //   'assets/images/leg.png',
-  // ];
-
   List list = [
     [
       'Costas',
@@ -47,7 +32,8 @@ class _AreaListViewState extends State<AreaListView>
       'assets/images/biceps.png',
       'assets/images/chest.png',
       'assets/images/leg.png'
-    ]
+    ],
+    ["A", "B", "C", "D", "E"]
   ];
 
   // create a list with the names of the areas and the imagesPaths
