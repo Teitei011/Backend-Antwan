@@ -1,18 +1,23 @@
 import "package:flutter/material.dart";
 import "package:naturalteam/app_theme.dart";
+import "../models/exercise.dart";
 
 class BodyExerciseScreen extends StatelessWidget {
   const BodyExerciseScreen({
     Key? key,
     required this.imagePath,
     required this.titleTxt,
+    required this.exercises,
   }) : super(key: key);
 
   final String imagePath;
   final String titleTxt;
+  final Exercise exercises;
 
   @override
   Widget build(BuildContext context) {
+    final bool thereIsData = false;
+
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -52,16 +57,31 @@ class BodyExerciseScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Expanded(
-              child: Center(
-                child: Text(
-                  "No Exercises",
-                  style: TextStyle(
-                    fontSize: 22,
-                    color: AppTheme.darkText,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            Expanded(
+              child: Container(
+                child: !thereIsData
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: exercises.exercises['B']!.length,
+                        itemBuilder: (context, index) {
+                          final exercise = exercises.exercises['B']![index];
+                          print("exercise: $exercise");
+                          return Material(
+                            child: ListTile(
+                              title: Text(exercise['title']!),
+                              subtitle: Text(exercise['subtitle']!),
+                            ),
+                          );
+                        },
+                      )
+                    : Text(
+                        "No Exercises",
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: AppTheme.darkText,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ),
             ),
           ],

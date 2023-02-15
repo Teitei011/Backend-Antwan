@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 
 import "../training/body_exercise_screen.dart";
 import "../ui_view/area_list_view.dart";
+import "../models/exercise.dart";
 
 class ExerciseCard extends StatelessWidget {
   const ExerciseCard({
@@ -28,6 +29,7 @@ class ExerciseCard extends StatelessWidget {
             builder: (context) => BodyExerciseScreen(
               imagePath: list[1][index],
               titleTxt: list[0][index],
+              exercises: exerciciosTemplate,
             ),
           ),
         );
