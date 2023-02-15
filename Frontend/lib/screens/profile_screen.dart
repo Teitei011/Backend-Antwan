@@ -25,7 +25,6 @@ class ProfilePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 30),
                 AnimatedContainer(
                   height: 150,
                   child: Lottie.asset('assets/animation/woman_profile.json'),
@@ -33,7 +32,7 @@ class ProfilePage extends StatelessWidget {
                       Matrix4.translationValues(0.0, 30 * (1.0 - 0.5), 0.0),
                   duration: Duration(seconds: 1),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 150),
                 Text(Nome,
                     style: TextStyle(
                         color: AppTheme.darkText,

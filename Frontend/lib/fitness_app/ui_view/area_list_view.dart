@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../components/exercise_card.dart';
 import '../fitness_app_theme.dart';
 
 class AreaListView extends StatefulWidget {
@@ -16,12 +17,40 @@ class AreaListView extends StatefulWidget {
 class _AreaListViewState extends State<AreaListView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
-  List<String> areaListData = <String>[
-    'assets/fitness_app/area1.png',
-    'assets/fitness_app/area2.png',
-    'assets/fitness_app/area3.png',
-    'assets/fitness_app/area1.png',
+
+  // List<String> areaListName = <String>[
+  //   'Costas',
+  //   'Ombro',
+  //   'Biceps e Triceps',
+  //   'Peito',
+  //   'Perna',
+  // ];
+  // List<String> areaListData = <String>[
+  //   'assets/images/back.png',
+  //   'assets/images/back2.png',
+  //   'assets/images/biceps.png',
+  //   'assets/images/chest.png',
+  //   'assets/images/leg.png',
+  // ];
+
+  List list = [
+    [
+      'Costas',
+      'Ombro',
+      'Biceps, Triceps',
+      'Peito',
+      'Perna',
+    ],
+    [
+      'assets/images/back.png',
+      'assets/images/back2.png',
+      'assets/images/biceps.png',
+      'assets/images/chest.png',
+      'assets/images/leg.png'
+    ]
   ];
+
+  // create a list with the names of the areas and the imagesPaths
 
   @override
   void initState() {
@@ -49,16 +78,16 @@ class _AreaListViewState extends State<AreaListView>
             child: AspectRatio(
               aspectRatio: 1.0,
               child: Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8),
+                padding: const EdgeInsets.only(left: 4.0, right: 4),
                 child: GridView(
                   padding: const EdgeInsets.only(
-                      left: 16, right: 16, top: 16, bottom: 16),
+                      left: 8, right: 8, top: 8, bottom: 8),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: List<Widget>.generate(
-                    areaListData.length,
+                    list[0].length,
                     (int index) {
-                      final int count = areaListData.length;
+                      final int count = list[0].length;
                       final Animation<double> animation =
                           Tween<double>(begin: 0.0, end: 1.0).animate(
                         CurvedAnimation(
@@ -68,11 +97,11 @@ class _AreaListViewState extends State<AreaListView>
                         ),
                       );
                       animationController?.forward();
-                      return AreaView(
-                        imagepath: areaListData[index],
-                        animation: animation,
-                        animationController: animationController!,
-                      );
+                      return ExerciseCard(
+                          index: index,
+                          list: list,
+                          animation: animation,
+                          animationController: animationController);
                     },
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -128,23 +157,26 @@ class AreaView extends StatelessWidget {
                       blurRadius: 10.0),
                 ],
               ),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  focusColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                  splashColor: FitnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
-                  onTap: () {},
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 16, left: 16, right: 16),
-                        child: Image.asset(imagepath!),
-                      ),
-                    ],
+              child: Expanded(
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    focusColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                    splashColor:
+                        FitnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
+                    onTap: () {},
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 8, left: 8, right: 8),
+                          child: Expanded(child: Image.asset(imagepath!)),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
