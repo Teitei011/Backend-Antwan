@@ -39,6 +39,8 @@ class ExerciseCard extends StatelessWidget {
         child:
             ListView(physics: const NeverScrollableScrollPhysics(), children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 list[0][index],

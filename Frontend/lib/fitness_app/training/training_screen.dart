@@ -110,7 +110,7 @@ class _TrainingScreenState extends State<TrainingScreen>
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[
-            getMainListViewUI(),
+            Expanded(flex: 10, child: getMainListViewUI()),
             getAppBarUI(),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,
