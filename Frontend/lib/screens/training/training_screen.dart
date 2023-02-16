@@ -1,7 +1,7 @@
 import 'package:naturalteam/fitness_app/ui_view/area_list_view.dart';
 import 'package:naturalteam/fitness_app/ui_view/title_view.dart';
 import 'package:flutter/material.dart';
-import '../fitness_app_theme.dart';
+import '../../fitness_app/fitness_app_theme.dart';
 
 class TrainingScreen extends StatefulWidget {
   const TrainingScreen({Key? key, this.animationController}) : super(key: key);

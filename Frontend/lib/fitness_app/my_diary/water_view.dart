@@ -276,7 +276,7 @@ class _WaterViewState extends State<WaterView> with TickerProviderStateMixin {
                             ],
                           ),
                           child: WaveView(
-                            percentageValue: 60.0,
+                            percentageValue: 40.0,
                           ),
                         ),
                       )

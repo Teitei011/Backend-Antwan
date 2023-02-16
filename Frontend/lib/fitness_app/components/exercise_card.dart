@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../training/body_exercise_screen.dart";
+import '../../screens/training/body_exercise_screen.dart';
 import "../ui_view/area_list_view.dart";
 import "../models/exercise.dart";
 

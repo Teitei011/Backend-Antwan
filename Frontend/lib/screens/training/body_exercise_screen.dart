@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:naturalteam/app_theme.dart";
-import "../models/exercise.dart";
+import '../../fitness_app/models/exercise.dart';
 
 class BodyExerciseScreen extends StatelessWidget {
   const BodyExerciseScreen({
