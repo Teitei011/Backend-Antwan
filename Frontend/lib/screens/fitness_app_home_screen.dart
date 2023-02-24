@@ -107,8 +107,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                     return;
                   }
                   setState(() {
-                    tabBody =
-                        DietScreen(animationController: animationController);
+                    tabBody = DietScreen();
                   });
                 });
               } else if (index == 3) {
