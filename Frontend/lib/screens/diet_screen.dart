@@ -32,92 +32,73 @@ class _DietScreenState extends State<DietScreen> {
 
               Container(
                 height: 1500,
-                margin: const EdgeInsets.only(top: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
                 child: ListView(children: [
-                  Card(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          'assets/fitness_app/breakfast.png',
-                          width: 100,
-                          height: 100,
-                        ),
-                        Text('Café da manhã'),
-                        Text('300 kcal'),
-                        Column(
-                          children: [
-                            Text('Ovo'),
-                            Text('Pão'),
-                            Text('Leite'),
-                          ],
-                        ),
-                      ],
-                    ),
+                  MealCard(
+                    imagePath: 'assets/fitness_app/breakfast.png',
+                    mealType: "Café da manhã",
+                    mealItems: ["Arroz", "Feijão", "Carne"],
                   ),
-                  Card(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          'assets/fitness_app/lunch.png',
-                          width: 100,
-                          height: 100,
-                        ),
-                        Text('Almoço'),
-                        Text('500 kcal'),
-                        Column(
-                          children: [
-                            Text('Arroz'),
-                            Text('Feijão'),
-                            Text('Carne'),
-                          ],
-                        ),
-                      ],
-                    ),
+                  const SizedBox(height: 10),
+                  MealCard(
+                    imagePath: 'assets/fitness_app/lunch.png',
+                    mealType: "Almoço",
+                    mealItems: ["Arroz", "Feijão", "Carne"],
                   ),
-                  Card(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          'assets/fitness_app/dinner.png',
-                          width: 100,
-                          height: 100,
-                        ),
-                        Text('Jantar'),
-                        Text('400 kcal'),
-                        Column(
-                          children: [
-                            Text('Macarrão'),
-                            Text('Carne'),
-                            Text('Salada'),
-                          ],
-                        ),
-                      ],
-                    ),
+                  const SizedBox(height: 10),
+                  MealCard(
+                    imagePath: 'assets/fitness_app/snack.png',
+                    mealType: "Lanche",
+                    mealItems: ["Arroz", "Feijão", "Carne"],
                   ),
-                  Card(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          'assets/fitness_app/snack.png',
-                          width: 100,
-                          height: 100,
-                        ),
-                        Text('Lanche'),
-                        Text('200 kcal'),
-                        Column(
-                          children: [
-                            Text('Biscoito'),
-                            Text('Leite'),
-                          ],
-                        ),
-                      ],
-                    ),
+                  const SizedBox(height: 10),
+                  MealCard(
+                    imagePath: 'assets/fitness_app/dinner.png',
+                    mealType: "Janta",
+                    mealItems: ["Arroz", "Feijão", "Carne"],
                   ),
+                  const SizedBox(height: 10),
                 ]),
               )
             ]),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MealCard extends StatelessWidget {
+  final String imagePath;
+  final String mealType;
+  final List<String> mealItems;
+
+  MealCard(
+      {required this.imagePath,
+      required this.mealType,
+      required this.mealItems});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: AppTheme.white,
+      child: Column(
+        children: [
+          const SizedBox(height: 15),
+          Text(mealType,
+              style: TextStyle(
+                  color: AppTheme.darkText,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold)),
+          Image.asset(
+            imagePath,
+            width: 100,
+            height: 100,
+          ),
+          Column(
+            children: mealItems.map((item) => Text(item)).toList(),
+          ),
+        ],
       ),
     );
   }
