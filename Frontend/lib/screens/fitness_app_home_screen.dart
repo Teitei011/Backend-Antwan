@@ -3,9 +3,9 @@ import 'package:naturalteam/screens/training/training_screen.dart';
 import 'package:flutter/material.dart';
 import 'diets/diet_screen_grid.dart';
 import 'profile_screen.dart';
-import '../fitness_app/bottom_navigation_view/bottom_bar_view.dart';
-import '../fitness_app/fitness_app_theme.dart';
-import '../fitness_app/my_diary/my_diary_screen.dart';
+import 'package:naturalteam/fitness_app/bottom_navigation_view/bottom_bar_view.dart';
+import 'package:naturalteam/fitness_app/fitness_app_theme.dart';
+import 'package:naturalteam/fitness_app/my_diary/my_diary_screen.dart';
 
 class FitnessAppHomeScreen extends StatefulWidget {
   @override

@@ -2,9 +2,9 @@ import 'package:naturalteam/screens/fitness_app_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../app_theme.dart';
-import '../fitness_app/components/button.dart';
-import '../fitness_app/components/sign_in_google.dart';
+import 'package:naturalteam/app_theme.dart';
+import 'package:naturalteam/fitness_app/components/button.dart';
+import 'package:naturalteam/fitness_app/components/sign_in_google.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

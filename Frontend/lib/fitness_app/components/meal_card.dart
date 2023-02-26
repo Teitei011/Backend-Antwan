@@ -6,7 +6,7 @@ import '../../screens/diets/diet_screen.dart';
 class MealCard extends StatelessWidget {
   final String imagePath;
   final String mealType;
-  final List<String> mealItems;
+  final List<Map<String, String>> mealItems;
 
   MealCard(
       {required this.imagePath,

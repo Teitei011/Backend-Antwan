@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:naturalteam/fitness_app/models/diet.dart';
 
-import '../../app_theme.dart';
-import '../../fitness_app/components/meal_card.dart';
+import 'package:naturalteam/app_theme.dart';
+import 'package:naturalteam/fitness_app/components/meal_card.dart';
 
 class DietScreen extends StatefulWidget {
   const DietScreen({super.key});
@@ -35,14 +36,15 @@ class _DietScreenState extends State<DietScreen> {
               Row(
                 children: [
                   MealCard(
+                    //TODO: Change this to a list of meals
                     imagePath: 'assets/fitness_app/breakfast.png',
                     mealType: "Café da manhã",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
+                    mealItems: dietTemplate.breakfast,
                   ),
                   MealCard(
                     imagePath: 'assets/fitness_app/lunch.png',
                     mealType: "Pós Treino",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
+                    mealItems: dietTemplate.postWorkout,
                   ),
                 ],
               ),
@@ -52,12 +54,12 @@ class _DietScreenState extends State<DietScreen> {
                   MealCard(
                     imagePath: 'assets/fitness_app/lunch.png',
                     mealType: "Lanche da manhã",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
+                    mealItems: dietTemplate.morningSnack,
                   ),
                   MealCard(
                     imagePath: 'assets/fitness_app/lunch.png',
                     mealType: "Almoço",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
+                    mealItems: dietTemplate.lunch,
                   ),
                 ],
               ),
@@ -67,13 +69,13 @@ class _DietScreenState extends State<DietScreen> {
                   MealCard(
                     imagePath: 'assets/fitness_app/snack.png',
                     mealType: "Lanche da tarde",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
+                    mealItems: dietTemplate.afternoonSnack,
                   ),
                   const SizedBox(height: 10),
                   MealCard(
                     imagePath: 'assets/fitness_app/dinner.png',
                     mealType: "Janta",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
+                    mealItems: dietTemplate.dinner,
                   ),
                 ],
               ),
@@ -81,7 +83,7 @@ class _DietScreenState extends State<DietScreen> {
               MealCard(
                 imagePath: 'assets/fitness_app/dinner.png',
                 mealType: "Ceia",
-                mealItems: ["Arroz", "Feijão", "Carne"],
+                mealItems: dietTemplate.nightSnack,
               ),
             ]),
           )

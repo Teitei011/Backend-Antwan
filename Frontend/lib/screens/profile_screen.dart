@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../app_theme.dart';
-import "../fitness_app/fitness_app_theme.dart";
+import 'package:naturalteam/app_theme.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage(
