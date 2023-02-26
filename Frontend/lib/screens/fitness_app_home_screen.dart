@@ -1,7 +1,7 @@
 import 'package:naturalteam/fitness_app/models/tabIcon_data.dart';
 import 'package:naturalteam/screens/training/training_screen.dart';
 import 'package:flutter/material.dart';
-import 'diet_screen.dart';
+import 'diets/diet_screen_grid.dart';
 import 'profile_screen.dart';
 import '../fitness_app/bottom_navigation_view/bottom_bar_view.dart';
 import '../fitness_app/fitness_app_theme.dart';

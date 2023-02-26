@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../app_theme.dart';
-import '../fitness_app/components/meal_card.dart';
+import '../../app_theme.dart';
+import '../../fitness_app/components/meal_card.dart';
 
 class DietScreen extends StatefulWidget {
   const DietScreen({super.key});
