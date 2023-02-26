@@ -19,49 +19,63 @@ class _DietScreenState extends State<DietScreen> {
       backgroundColor: AppTheme.notWhite,
       body: SafeArea(
         child: Center(
-          child: SingleChildScrollView(
-            child: Column(children: [
-              // Large text in the middle saying Sign up to Bora Treinar?
-              const SizedBox(height: 10),
+          child: ListView(children: [
+            // Large text in the middle saying Sign up to Bora Treinar?
+            const SizedBox(height: 10),
 
-              Text("Sua dieta",
-                  style: TextStyle(
-                      color: AppTheme.darkText,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold)),
+            Text("Sua dieta",
+                style: TextStyle(
+                    color: AppTheme.darkText,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold)),
 
-              Container(
-                height: 1500,
-                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
-                child: ListView(children: [
-                  MealCard(
-                    imagePath: 'assets/fitness_app/breakfast.png',
-                    mealType: "Café da manhã",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
-                  ),
-                  const SizedBox(height: 10),
-                  MealCard(
-                    imagePath: 'assets/fitness_app/lunch.png',
-                    mealType: "Almoço",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
-                  ),
-                  const SizedBox(height: 10),
-                  MealCard(
-                    imagePath: 'assets/fitness_app/snack.png',
-                    mealType: "Lanche",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
-                  ),
-                  const SizedBox(height: 10),
-                  MealCard(
-                    imagePath: 'assets/fitness_app/dinner.png',
-                    mealType: "Janta",
-                    mealItems: ["Arroz", "Feijão", "Carne"],
-                  ),
-                  const SizedBox(height: 10),
-                ]),
-              )
-            ]),
-          ),
+            Container(
+              height: 1500,
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
+              child: Column(children: [
+                MealCard(
+                  imagePath: 'assets/fitness_app/breakfast.png',
+                  mealType: "Café da manhã",
+                  mealItems: ["Arroz", "Feijão", "Carne"],
+                ),
+                const SizedBox(height: 10),
+                MealCard(
+                  imagePath: 'assets/fitness_app/lunch.png',
+                  mealType: "Pós Treino",
+                  mealItems: ["Arroz", "Feijão", "Carne"],
+                ),
+                MealCard(
+                  imagePath: 'assets/fitness_app/lunch.png',
+                  mealType: "Lanche da manhã",
+                  mealItems: ["Arroz", "Feijão", "Carne"],
+                ),
+                MealCard(
+                  imagePath: 'assets/fitness_app/lunch.png',
+                  mealType: "Almoço",
+                  mealItems: ["Arroz", "Feijão", "Carne"],
+                ),
+                const SizedBox(height: 10),
+                MealCard(
+                  imagePath: 'assets/fitness_app/snack.png',
+                  mealType: "Lanche da tarde",
+                  mealItems: ["Arroz", "Feijão", "Carne"],
+                ),
+                const SizedBox(height: 10),
+                MealCard(
+                  imagePath: 'assets/fitness_app/dinner.png',
+                  mealType: "Janta",
+                  mealItems: ["Arroz", "Feijão", "Carne"],
+                ),
+                const SizedBox(height: 10),
+                MealCard(
+                  imagePath: 'assets/fitness_app/dinner.png',
+                  mealType: "Ceia",
+                  mealItems: ["Arroz", "Feijão", "Carne"],
+                ),
+                const SizedBox(height: 10),
+              ]),
+            )
+          ]),
         ),
       ),
     );
@@ -80,25 +94,28 @@ class MealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppTheme.white,
-      child: Column(
-        children: [
-          const SizedBox(height: 15),
-          Text(mealType,
-              style: TextStyle(
-                  color: AppTheme.darkText,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold)),
-          Image.asset(
-            imagePath,
-            width: 100,
-            height: 100,
-          ),
-          Column(
-            children: mealItems.map((item) => Text(item)).toList(),
-          ),
-        ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(45),
+      child: Card(
+        color: AppTheme.white,
+        child: Column(
+          children: [
+            const SizedBox(height: 15),
+            Text(mealType,
+                style: TextStyle(
+                    color: AppTheme.darkText,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold)),
+            Image.asset(
+              imagePath,
+              width: 100,
+              height: 100,
+            ),
+            Column(
+              children: mealItems.map((item) => Text(item)).toList(),
+            ),
+          ],
+        ),
       ),
     );
   }
