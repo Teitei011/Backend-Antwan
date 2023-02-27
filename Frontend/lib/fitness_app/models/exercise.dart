@@ -49,5 +49,17 @@ final exerciciosTemplate = Exercise(
       {"title": "Exercício 1", "subtitle": "Descrição do exercício 1"},
       {"title": "Exercicio 2", "subtitle": "Descrição do exercício 2"}
     ],
+    'F': [
+      {"title": "Exercício 1", "subtitle": "Descrição do exercício 1"},
+      {"title": "Exercicio 2", "subtitle": "Descrição do exercício 2"}
+    ],
+    'G': [
+      {"title": "Gluteo 1", "subtitle": "Descrição do exercício 1"},
+      {"title": "Exercicio 2", "subtitle": "Descrição do exercício 2"}
+    ],
+    'H': [
+      {"title": "Abdominal 1", "subtitle": "Descrição do exercício 1"},
+      {"title": "Exercicio 2", "subtitle": "Descrição do exercício 2"}
+    ],
   },
 );

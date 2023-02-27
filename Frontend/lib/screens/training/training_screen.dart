@@ -37,20 +37,40 @@ class _TrainingScreenState extends State<TrainingScreen>
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ExerciseCard(index: 0),
                         ExerciseCard(index: 1),
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ExerciseCard(index: 2),
                         ExerciseCard(index: 3),
                       ],
                     ),
-                    ExerciseCard(index: 4),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ExerciseCard(index: 4),
+                          ExerciseCard(index: 5),
+                        ]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ExerciseCard(index: 6),
+                        ExerciseCard(index: 7)
+                      ],
+                    )
                   ],
                 ),
               ),

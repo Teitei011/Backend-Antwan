@@ -10,15 +10,21 @@ List list = [
     'Biceps, Triceps',
     'Peito',
     'Perna',
+    'Panturrilha',
+    'Gluteo',
+    "Abdômen"
   ],
   [
     'assets/images/back.png',
     'assets/images/back2.png',
     'assets/images/biceps.png',
     'assets/images/chest.png',
-    'assets/images/leg.png'
+    'assets/images/leg.png',
+    'assets/images/calf.png',
+    'assets/images/glute.png',
+    'assets/images/abdomen.png'
   ],
-  ["A", "B", "C", "D", "E"]
+  ["A", "B", "C", "D", "E", "F", "G", "H"]
 ];
 
 class ExerciseCard extends StatelessWidget {
