@@ -1,8 +1,6 @@
-import 'package:naturalteam/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../app_theme.dart';
-import '../../screens/signup_screen.dart';
 
 class Button extends StatelessWidget {
   const Button(

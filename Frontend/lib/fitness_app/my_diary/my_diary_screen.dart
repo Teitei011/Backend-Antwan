@@ -1,6 +1,4 @@
 import 'package:naturalteam/fitness_app/ui_view/body_measurement.dart';
-import 'package:naturalteam/fitness_app/ui_view/glass_view.dart';
-import 'package:naturalteam/fitness_app/ui_view/OQueFoiComido.dart';
 import 'package:naturalteam/fitness_app/ui_view/title_view.dart';
 import 'package:naturalteam/fitness_app/fitness_app_theme.dart';
 import 'package:naturalteam/fitness_app/my_diary/meals_list_view.dart';
