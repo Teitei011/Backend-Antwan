@@ -83,11 +83,7 @@ class _AreaListViewState extends State<AreaListView>
                         ),
                       );
                       animationController?.forward();
-                      return ExerciseCard(
-                          index: index,
-                          list: list,
-                          animation: animation,
-                          animationController: animationController);
+                      return ExerciseCard(index: index);
                     },
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

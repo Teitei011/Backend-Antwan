@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'package:naturalteam/app_theme.dart';
-import 'package:naturalteam/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'screens/fitness_app_home_screen.dart';
 import 'screens/login_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 

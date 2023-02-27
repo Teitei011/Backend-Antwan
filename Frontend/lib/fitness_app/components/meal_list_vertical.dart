@@ -3,8 +3,6 @@ import 'package:naturalteam/fitness_app/models/meals_list_data.dart';
 import 'package:naturalteam/main.dart';
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
-
 class MealsListVertical extends StatefulWidget {
   const MealsListVertical(
       {Key? key, this.mainScreenAnimationController, this.mainScreenAnimation})

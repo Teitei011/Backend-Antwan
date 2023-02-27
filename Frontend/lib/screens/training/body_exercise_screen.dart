@@ -35,6 +35,7 @@ class BodyExerciseScreen extends StatelessWidget {
               child: Text(
                 titleTxt,
                 style: const TextStyle(
+                  decoration: TextDecoration.none,
                   color: AppTheme.darkText,
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
