@@ -36,13 +36,12 @@ class _DietScreenState extends State<DietScreen> {
               Row(
                 children: [
                   MealCard(
-                    //TODO: Change this to a list of meals
-                    imagePath: 'assets/fitness_app/breakfast.png',
+                    imagePath: 'assets/fitness_app/morningSnack.png',
                     mealType: "Café da manhã",
                     mealItems: dietTemplate.breakfast,
                   ),
                   MealCard(
-                    imagePath: 'assets/fitness_app/lunch.png',
+                    imagePath: 'assets/fitness_app/nightSnack.png',
                     mealType: "Pós Treino",
                     mealItems: dietTemplate.postWorkout,
                   ),
@@ -52,7 +51,7 @@ class _DietScreenState extends State<DietScreen> {
               Row(
                 children: [
                   MealCard(
-                    imagePath: 'assets/fitness_app/lunch.png',
+                    imagePath: 'assets/fitness_app/breakfast.png',
                     mealType: "Lanche da manhã",
                     mealItems: dietTemplate.morningSnack,
                   ),
@@ -81,7 +80,7 @@ class _DietScreenState extends State<DietScreen> {
               ),
               const SizedBox(height: 10),
               MealCard(
-                imagePath: 'assets/fitness_app/dinner.png',
+                imagePath: 'assets/fitness_app/nightSnack.png',
                 mealType: "Ceia",
                 mealItems: dietTemplate.nightSnack,
               ),
