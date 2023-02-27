@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import "package:naturalteam/app_theme.dart";
-
 import '../../screens/training/body_exercise_screen.dart';
 import "../models/exercise.dart";
 
@@ -30,7 +29,19 @@ class ExerciseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {print(list[2][index])},
+      onTap: () => {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BodyExerciseScreen(
+              imagePath: list[1][index],
+              titleTxt: list[0][index],
+              exercises: Exercise(exercises: exerciciosTemplate.exercises),
+              exerciseType: list[2][index],
+            ),
+          ),
+        )
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: Padding(
