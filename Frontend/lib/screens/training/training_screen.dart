@@ -33,25 +33,27 @@ class _TrainingScreenState extends State<TrainingScreen>
             const SizedBox(
               height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ExerciseCard(index: 0),
-                ExerciseCard(index: 1),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ExerciseCard(index: 2),
-                ExerciseCard(index: 3),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ExerciseCard(index: 4),
-              ],
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        ExerciseCard(index: 0),
+                        ExerciseCard(index: 1),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        ExerciseCard(index: 2),
+                        ExerciseCard(index: 3),
+                      ],
+                    ),
+                    ExerciseCard(index: 4),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
