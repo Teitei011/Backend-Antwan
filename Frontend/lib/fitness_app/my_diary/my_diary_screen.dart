@@ -71,16 +71,20 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
     //   ),
     // );
     /// TODO: FIM
+    listViews.add(SizedBox(height: 20));
 
     listViews.add(
-      TitleView(
-        titleTxt: 'Meals today',
-        subTxt: 'Customize',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve:
-                Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TitleView(
+          titleTxt: 'Comidas de hoje',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+              CurvedAnimation(
+                  parent: widget.animationController!,
+                  curve: Interval((1 / count) * 2, 1.0,
+                      curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!,
+        ),
       ),
     );
 
@@ -128,15 +132,6 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                     curve: Curves.fastOutSlowIn))),
         mainScreenAnimationController: widget.animationController!,
       ),
-    );
-    listViews.add(
-      GlassView(
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(
-              CurvedAnimation(
-                  parent: widget.animationController!,
-                  curve: Interval((1 / count) * 8, 1.0,
-                      curve: Curves.fastOutSlowIn))),
-          animationController: widget.animationController!),
     );
   }
 

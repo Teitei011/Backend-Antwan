@@ -1,7 +1,7 @@
 import 'package:naturalteam/fitness_app/ui_view/area_list_view.dart';
 import 'package:naturalteam/fitness_app/ui_view/title_view.dart';
 import 'package:flutter/material.dart';
-import '../fitness_app_theme.dart';
+import 'package:naturalteam/fitness_app/fitness_app_theme.dart';
 
 class TrainingScreen extends StatefulWidget {
   const TrainingScreen({Key? key, this.animationController}) : super(key: key);
@@ -55,25 +55,6 @@ class _TrainingScreenState extends State<TrainingScreen>
   void addAllListData() {
     const int count = 5;
 
-    // listViews.add(
-    //   WorkoutView(
-    //     animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-    //         parent: widget.animationController!,
-    //         curve:
-    //             Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
-    //     animationController: widget.animationController!,
-    //   ),
-    // );
-    // listViews.add(
-    //   RunningView(
-    //     animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-    //         parent: widget.animationController!,
-    //         curve:
-    //             Interval((1 / count) * 3, 1.0, curve: Curves.fastOutSlowIn))),
-    //     animationController: widget.animationController!,
-    //   ),
-    // );
-
     listViews.add(
       TitleView(
         titleTxt: 'Seu programa',
@@ -112,9 +93,6 @@ class _TrainingScreenState extends State<TrainingScreen>
           children: <Widget>[
             Expanded(flex: 10, child: getMainListViewUI()),
             getAppBarUI(),
-            SizedBox(
-              height: MediaQuery.of(context).padding.bottom,
-            )
           ],
         ),
       ),
