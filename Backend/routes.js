@@ -39,7 +39,6 @@ router.patch('/diet/:id', dietController.updateDiet);
 router.delete('/diet/:id', dietController.deleteDiet);
 
 // Exercise routes
-router.get('/exercises', exerciseController.getExercises);
 router.get('/exercise/:id', exerciseController.getExercise);
 router.post('/exercise', exerciseController.createExercise);
 router.patch('/exercise/:id', exerciseController.updateExercise);
