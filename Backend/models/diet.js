@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const dietSchema = new mongoose.Schema({
+  userID : { type: String, required: true },
   breakfast: [
     {
       title: { type: String, required: true },

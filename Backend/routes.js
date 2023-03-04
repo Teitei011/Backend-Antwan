@@ -18,7 +18,7 @@ router.delete('/user/:id', userController.deleteUser);
 
 // user exercises routes 
 
-// router.get('/user/:id/exercise', userController.getUserDiets);
+router.get('/exercise/:exerciseID', userController.getUserExercise);
 router.post('/user/:id/exercise', userController.addUserExercise);
 router.patch('/exercise/:exerciseId', userController.updateUserExercise);
 router.delete('/exercise/:exerciseId', userController.deleteUserExercise);

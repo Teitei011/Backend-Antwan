@@ -21,7 +21,7 @@ class _TrainingScreenState extends State<TrainingScreen>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
+      child: Material(
         color: FitnessAppTheme.background,
         child: Column(
           children: [

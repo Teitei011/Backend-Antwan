@@ -3,10 +3,9 @@ const User = require("../models/user");
 const Exercise = require("../models/exercise");
 const mongoose = require("mongoose");
 const Diet = require("../models/diet");
-const bcrypt = require("bcryptjs");
 
 
-exports.signup = async (req, res) => {
+exports.signUp = async (req, res) => {
   try {
     // Retrieve user input from the request body
     const { email, password, name } = req.body;
@@ -21,16 +20,9 @@ exports.signup = async (req, res) => {
     if (existingUser) {
       return res.status(409).json({ message: "Email already in use." });
     }
-
-    // Hash the password before storing it in the database
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     // Create a new user document
-    const user = new User({ email, password: hashedPassword, name });
+    const user = new User({ email, password, name });
     await user.save();
-
-    // Generate a JSON web token for the newly created user
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
 
     // Return the generated token to the client
     return res.status(201).json({ token });
@@ -45,37 +37,8 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  try {
-    // Validate user input (email, password)
-    // ...
-    // Call the database to check if the user exists and the password matches
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ error: "User not found" });
-    }
+  return res.status(200).json({ email});
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ error: "Password is incorrect" });
-    }
-
-    // Create a JWT token and return it to the client
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: 3600,
-    });
-
-    return res.json({
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
-    });
-  } catch (error) {
-    console.error(error.message);
-    return res.status(500).json({ error: "Server error" });
-  }
 };
 
 
@@ -107,8 +70,8 @@ exports.createUser = async (req, res) => {
     password: req.body.password,
     googleId: req.body.googleId,
     dateOfBirth: req.body.dateOfBirth,
-    height: req.body.height,
-    weight: req.body.weight,
+    // height: req.body.height,
+    // weight: req.body.weight,
     exercises: req.body.exercises,
     diet: req.body.diet,
     admin: req.body.admin,
@@ -146,17 +109,38 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
+
+
+
+
+exports.getUserExercise = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    const exercise = await Exercise.findById(user.exercises);
+    res.json(exercise);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
+
 exports.addUserExercise = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const exercise = new Exercise({
+      userID : req.params.id,
       A: req.body.A,
       B: req.body.B,
       C: req.body.C,
       D: req.body.D,
       E: req.body.E,
+      F: req.body.F,
+      G: req.body.G,
+      H: req.body.H,
     });
 
     await exercise.save();
@@ -180,6 +164,9 @@ exports.updateUserExercise = async (req, res) => {
     exercise.C = req.body.C;
     exercise.D = req.body.D;
     exercise.E = req.body.E;
+    exercise.F = req.body.F;
+    exercise.G = req.body.G;
+    exercise.H = req.body.H;
 
     await exercise.save();
     res.json(exercise);
@@ -193,7 +180,8 @@ exports.deleteUserExercise = async (req, res) => {
     const exercise = await Exercise.findByIdAndRemove(req.params.exerciseId);
     if (!exercise)
       return res.status(404).json({ message: "Exercise not found" });
-    res.json({ message: "Exercise deleted" });
+    
+      res.json({ message: "Exercise deleted" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -206,6 +194,7 @@ exports.addUserDiet = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const diet = new Diet({
+      userID : req.params.id,
       breakfast: req.body.breakfast,
       postWorkout: req.body.postWorkout,
       morningSnack: req.body.morningSnack,

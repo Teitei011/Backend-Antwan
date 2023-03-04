@@ -9,7 +9,7 @@ dotenv.config();
 mongoose.set('strictQuery', true);
 
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect("mongodb+srv://teitei:V6SkuL47wp1yH5ZG@cluster0.volrdxt.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

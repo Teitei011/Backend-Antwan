@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:naturalteam/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:naturalteam/screens/fitness_app_home_screen.dart';
+import 'package:naturalteam/screens/training/training_screen.dart';
 import 'screens/login_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -33,8 +35,8 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      // home: FitnessAppHomeScreen(),
-      home: LoginPage(),
+      home: FitnessAppHomeScreen(),
+      // home: TrainingScreen(),
     );
   }
 }

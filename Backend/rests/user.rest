@@ -22,34 +22,76 @@ GET http://localhost:3001/users HTTP/1.1
 ### 
 
 # Get a specific user
-GET http://localhost:3001/user/63e3b266e5f6db1e92b8fef8 HTTP/1.1
+GET http://localhost:3001/user/64028593b4a147b29528f610 HTTP/1.1
 
 ### 
 
 # Update a user
-POST http://localhost:3001/user/63e3b266e5f6db1e92b8fef8 HTTP/1.1
+POST http://localhost:3001/user/64028593b4a147b29528f610 HTTP/1.1
 Content-Type:  application/json
 
 {
-	"name": "Stefan Taiguara",
-	"email": "stefantleal14@gmail.com",
+	"name": "Antwan Simon Couperus Van Den Verg Leal",
+	"email": "antwansimon@gmail.com",
 	"password": "123",
 	"googleId": "2",
-	"dateOfBirth": "1998-08-24",
-	"height": "171",
-	"weight": "53"
+	"dateOfBirth": "2004-04-16",
+	"height": "168",
+	"weight": "70"
 }
 
 ### 
 ## Delete a user
-DELETE http://localhost:3001/user/63e3e3d130b0673af6bf91cc HTTP/1.1
+DELETE http://localhost:3001/user/64028593b4a147b29528f610 HTTP/1.1
 
 ###
 # Add a diet to a user
-POST http://localhost:3001/user/63e3e40130b0673af6bf91d4/diet HTTP/1.1
+POST http://localhost:3001/user/63e53344532429c20dfa8d32/diet HTTP/1.1
 Content-Type:  application/json
 
 {
+	"breakfast": [{
+		"title": "Omelete",
+		"subtitle": "Omelete com queijo"
+	}],
+	"postWorkout": [{
+		"title": "Batata doce",
+		"subtitle": "Batata doce com frango"
+	}],
+	"morningSnack": [{
+		"title": "Pão de queijo",
+		"subtitle": "Pão de queijo com queijo"
+	}],
+	"lunch": [{
+		"title": "Arroz",
+		"subtitle": "Arroz com feijão"
+	}],
+	"afternoonSnack": [{
+		"title": "Pão de queijo",
+		"subtitle": "Pão de queijo com queijo"
+	}],
+	"dinner": [{
+		"title": "Arroz",
+		"subtitle": "Arroz com feijão"
+	}],
+	"nightSnack": [{
+		"title": "Pão de queijo",
+		"subtitle": "Pão de queijo com queijo"
+	}]
+}
+
+
+### 
+
+# Get a user's diet
+GET http://localhost:3001/diet/6402871bb4a147b29528f631 HTTP/1.1
+
+###
+# Update a user's diet
+POST http://localhost:3001/user/63e3e40130b0673af6bf91d4/diet HTTP/1.1
+
+{
+	"userID": "63e3e40130b0673af6bf91d4",
 	"breakfast": [{
 		"title": "Omelete",
 		"subtitle": "Omelete com queijo",
@@ -79,3 +121,62 @@ Content-Type:  application/json
 		"subtitle": "Pão de queijo com queijo"
 	}]
 }
+
+
+###
+# Delete a user's diet
+DELETE http://localhost:3001/diet/640286abb4a147b29528f618 HTTP/1.1
+
+###
+# Add a workout to a user
+POST http://localhost:3001/user/63e53344532429c20dfa8d32/exercise HTTP/1.1
+
+{
+	"userID": "63e53344532429c20dfa8d32",
+	"A": [{
+		"title": "Supino reto",
+		"subtitle": "3x10"
+	}],
+	"B": [{
+		"title": "Supino inclinado",
+		"subtitle": "3x10"
+	}],
+	"C": [{
+		"title": "Supino declinado",
+		"subtitle": "3x10"
+	}],
+	"D": [{
+		"title": "Supino reto",
+		"subtitle": "3x10"
+	}],
+	"E": [{
+		"title": "Supino inclinado",
+		"subtitle": "3x10"
+	}],
+	"F": [{
+		"title": "Supino declinado",
+		"subtitle": "3x10"
+	}],
+	"G": [{
+		"title": "Supino reto",
+		"subtitle": "3x10"
+	}],
+	"H": [{
+		"title": "Supino inclinado",
+		"subtitle": "3x10"
+	}],
+}
+
+
+### 
+# Get a user's exercise
+GET http://localhost:3001/exercise/64028a51b4a147b29528f655 HTTP/1.1
+
+###
+# Update a user's exercise
+POST http://localhost:3001/exercise/63e533d759c1a7c9bc59fe39 HTTP/1.1
+
+
+###
+# Delete a user's exercise
+DELETE http://localhost:3001/exercise/63e533d759c1a7c9bc59fe39 HTTP/1.1
