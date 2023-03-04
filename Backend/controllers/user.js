@@ -72,8 +72,8 @@ exports.createUser = async (req, res) => {
     dateOfBirth: req.body.dateOfBirth,
     // height: req.body.height,
     // weight: req.body.weight,
-    exercises: req.body.exercises,
-    diet: req.body.diet,
+    // exercises: req.body.exercises,
+    // diet: req.body.diet,
     admin: req.body.admin,
   });
 
@@ -99,14 +99,27 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+
+
 exports.deleteUser = async (req, res) => {
+  //delete diet and exercise first, then delete user
   try {
-    const user = await User.findByIdAndRemove(req.params.id);
-    if (!user) return res.status(404).json({ message: "User not found" });
-    res.json({ message: "User deleted" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+      const user = await User.findById(req.params.id);
+
+      if (!user) return res.status(404).json({ message: "User not found" });
+
+      const diet = await Diet.findById(user.diet);
+      const exercise = await Exercise.findById(user.exercises);
+
+      if(diet) await diet.remove();
+      if(exercise) await exercise.remove();
+      await user.remove();
+
+      res.json({ message: "User deleted" });
+
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
 };
 
 
