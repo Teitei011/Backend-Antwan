@@ -168,7 +168,10 @@ exports.addUserExercise = async (req, res) => {
 
 exports.updateUserExercise = async (req, res) => {
   try {
-    const exercise = await Exercise.findById(req.params.exerciseId);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const exercise = await Exercise.findById(user.exercises);
     if (!exercise)
       return res.status(404).json({ message: "Exercise not found" });
 
@@ -183,6 +186,7 @@ exports.updateUserExercise = async (req, res) => {
 
     await exercise.save();
     res.json(exercise);
+
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
