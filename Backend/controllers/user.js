@@ -284,9 +284,15 @@ exports.getUserDiet = async (req, res) => {
 
 exports.deleteUserDiet = async (req, res) => {
   try {
-    const diet = await Diet.findByIdAndRemove(req.params.dietId);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const diet = await Diet.findById(user.diet);
     if (!diet) return res.status(404).json({ message: "Diet not found" });
-    res.json({ message: "Diet deleted" });
+
+    await diet.remove();
+    user.diet = null;
+
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
