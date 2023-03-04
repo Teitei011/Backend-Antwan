@@ -3,45 +3,56 @@ const User = require("../models/user");
 const Exercise = require("../models/exercise");
 const mongoose = require("mongoose");
 const Diet = require("../models/diet");
-
+const bcrypt = require('bcryptjs');
 
 exports.signUp = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // Create a new user instance with the hashed password
+  const newUser = new User({ name, email, password: hashedPassword });
+
   try {
-    // Retrieve user input from the request body
-    const { email, password, name } = req.body;
-
-    // Validate user input
-    if (!email || !password || !name) {
-      return res.status(400).json({ message: "All fields are required." });
-    }
-
-    // Check if the email already exists in the database
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(409).json({ message: "Email already in use." });
-    }
-    // Create a new user document
-    const user = new User({ email, password, name });
-    await user.save();
-
-    // Return the generated token to the client
-    return res.status(201).json({ token });
+    // Save the user to the database
+    await newUser.save();
+    res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    res.status(400).json({ message: 'Error creating user', error });
   }
 };
-
-
 
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  return res.status(200).json({ email});
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
 
+    // If user not found, send error response
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    // Compare the password with the stored hash
+    const isMatch = await bcrypt.compare(hashedPassword, user.password);
+
+    // If passwords don't match, send error response
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // If passwords match, create JWT token and send success response
+    const token = createToken(user._id);
+    res.status(200).json({ message: 'Successfully logged in', token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
 };
-
-
 
 
 exports.getUsers = async (req, res) => {
@@ -72,8 +83,8 @@ exports.createUser = async (req, res) => {
     dateOfBirth: req.body.dateOfBirth,
     // height: req.body.height,
     // weight: req.body.weight,
-    exercises: req.body.exercises,
-    diet: req.body.diet,
+    // exercises: req.body.exercises,
+    // diet: req.body.diet,
     admin: req.body.admin,
   });
 
@@ -100,23 +111,32 @@ exports.updateUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
+  //delete diet and exercise first, then delete user
   try {
-    const user = await User.findByIdAndRemove(req.params.id);
+    const user = await User.findById(req.params.id);
+
     if (!user) return res.status(404).json({ message: "User not found" });
+
+    const diet = await Diet.findById(user.diet);
+    const exercise = await Exercise.findById(user.exercises);
+
+    if (diet) await diet.remove();
+    if (exercise) await exercise.remove();
+    await user.remove();
+
     res.json({ message: "User deleted" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-
-
-
-
 exports.getUserExercise = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
+
+    if (user.exercises == null)
+      return res.status(404).json({ message: "Exercise not found" });
     const exercise = await Exercise.findById(user.exercises);
     res.json(exercise);
   } catch (err) {
@@ -124,15 +144,13 @@ exports.getUserExercise = async (req, res) => {
   }
 };
 
-
-
 exports.addUserExercise = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const exercise = new Exercise({
-      userID : req.params.id,
+      userID: req.params.id,
       A: req.body.A,
       B: req.body.B,
       C: req.body.C,
@@ -155,7 +173,10 @@ exports.addUserExercise = async (req, res) => {
 
 exports.updateUserExercise = async (req, res) => {
   try {
-    const exercise = await Exercise.findById(req.params.exerciseId);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const exercise = await Exercise.findById(user.exercises);
     if (!exercise)
       return res.status(404).json({ message: "Exercise not found" });
 
@@ -177,11 +198,16 @@ exports.updateUserExercise = async (req, res) => {
 
 exports.deleteUserExercise = async (req, res) => {
   try {
-    const exercise = await Exercise.findByIdAndRemove(req.params.exerciseId);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const exercise = await Exercise.findById(user.exercises);
     if (!exercise)
       return res.status(404).json({ message: "Exercise not found" });
-    
-      res.json({ message: "Exercise deleted" });
+
+    await exercise.remove();
+    user.exercises = null;
+    await user.save();
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -194,7 +220,7 @@ exports.addUserDiet = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const diet = new Diet({
-      userID : req.params.id,
+      userID: req.params.id,
       breakfast: req.body.breakfast,
       postWorkout: req.body.postWorkout,
       morningSnack: req.body.morningSnack,
@@ -219,7 +245,10 @@ exports.addUserDiet = async (req, res) => {
 
 exports.updateUserDiet = async (req, res) => {
   try {
-    const diet = await Diet.findById(req.params.dietId);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const diet = await Diet.findById(user.diet);
     if (!diet) return res.status(404).json({ message: "Diet not found" });
 
     diet.breakfast = req.body.breakfast;
@@ -239,9 +268,13 @@ exports.updateUserDiet = async (req, res) => {
 
 exports.getUserDiet = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).populate("diet");
+    const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
-    res.json(user.diet);
+
+    if (user.diet == null)
+      return res.status(404).json({ message: "Diet not found" });
+    const diet = await Diet.findById(user.diet);
+    res.json(diet);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -249,9 +282,15 @@ exports.getUserDiet = async (req, res) => {
 
 exports.deleteUserDiet = async (req, res) => {
   try {
-    const diet = await Diet.findByIdAndRemove(req.params.dietId);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const diet = await Diet.findById(user.diet);
     if (!diet) return res.status(404).json({ message: "Diet not found" });
-    res.json({ message: "Diet deleted" });
+
+    await diet.remove();
+    user.diet = null;
+    await user.save();
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
