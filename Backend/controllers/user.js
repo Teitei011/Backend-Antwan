@@ -200,7 +200,7 @@ exports.deleteUserExercise = async (req, res) => {
     await exercise.remove();
     user.exercises = null;
     await user.save();
-    
+
 
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -239,7 +239,10 @@ exports.addUserDiet = async (req, res) => {
 
 exports.updateUserDiet = async (req, res) => {
   try {
-    const diet = await Diet.findById(req.params.dietId);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const diet = await Diet.findById(user.diet);
     if (!diet) return res.status(404).json({ message: "Diet not found" });
 
     diet.breakfast = req.body.breakfast;
@@ -250,8 +253,10 @@ exports.updateUserDiet = async (req, res) => {
     diet.dinner = req.body.dinner;
     diet.nightSnack = req.body.nightSnack;
 
+
     await diet.save();
     res.json(diet);
+
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
