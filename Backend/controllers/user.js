@@ -190,11 +190,18 @@ exports.updateUserExercise = async (req, res) => {
 
 exports.deleteUserExercise = async (req, res) => {
   try {
-    const exercise = await Exercise.findByIdAndRemove(req.params.exerciseId);
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const exercise = await Exercise.findById(user.exercises);
     if (!exercise)
       return res.status(404).json({ message: "Exercise not found" });
+
+    await exercise.remove();
+    user.exercises = null;
+    await user.save();
     
-      res.json({ message: "Exercise deleted" });
+
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
