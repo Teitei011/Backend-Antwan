@@ -4,6 +4,11 @@ const userController = require('./controllers/user');
 const dietController = require('./controllers/diet');
 const exerciseController = require('./controllers/exercise');
 
+// Login route
+router.post('/login', userController.login);
+router.post('/signup', userController.signUp);
+
+
 // User routes
 router.get('/users', userController.getUsers);
 router.get('/user/:id', userController.getUser);
@@ -13,7 +18,7 @@ router.delete('/user/:id', userController.deleteUser);
 
 // user exercises routes 
 
-// router.get('/user/:id/exercise', userController.getUserDiets);
+router.get('/exercise/:exerciseID', userController.getUserExercise);
 router.post('/user/:id/exercise', userController.addUserExercise);
 router.patch('/exercise/:exerciseId', userController.updateUserExercise);
 router.delete('/exercise/:exerciseId', userController.deleteUserExercise);

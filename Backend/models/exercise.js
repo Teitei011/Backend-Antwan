@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const exerciseSchema = new mongoose.Schema({
+  userID : { type: String, required: true },
   A: [
     {
       title: { required: true, type: String },
@@ -30,7 +31,25 @@ const exerciseSchema = new mongoose.Schema({
       title: { required: true, type: String },
       subtitle: { required: true, type: String },
     },
+    
   ],
+  F: [
+    {
+      title: { required: true, type: String },
+      subtitle: { required: true, type: String },
+    },
+  ],
+  G: [
+    {
+      title: { required: true, type: String },
+      subtitle: { required: true, type: String },
+    },
+  ],H: [
+    {
+      title: { required: true, type: String },
+      subtitle: { required: true, type: String },
+    },
+  ]
 });
 
 
