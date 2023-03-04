@@ -130,8 +130,11 @@ exports.getUserExercise = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
+
+    if(user.exercises == null) return res.status(404).json({ message: "Exercise not found" });
     const exercise = await Exercise.findById(user.exercises);
     res.json(exercise);
+
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
