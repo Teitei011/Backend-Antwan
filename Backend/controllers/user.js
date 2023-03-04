@@ -271,9 +271,12 @@ exports.updateUserDiet = async (req, res) => {
 
 exports.getUserDiet = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).populate("diet");
-    if (!user) return res.status(404).json({ message: "User not found" });
-    res.json(user.diet);
+      const user = await User.findById(req.params.id);
+      if (!user) return res.status(404).json({ message: "User not found" });
+
+      if(user.diet == null) return res.status(404).json({ message: "Diet not found" });
+      const diet = await Diet.findById(user.diet);
+      res.json(diet);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
