@@ -292,6 +292,7 @@ exports.deleteUserDiet = async (req, res) => {
 
     await diet.remove();
     user.diet = null;
+    await user.save();
 
   } catch (err) {
     res.status(500).json({ message: err.message });

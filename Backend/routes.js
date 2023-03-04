@@ -18,17 +18,17 @@ router.delete('/user/:id', userController.deleteUser);
 
 // user exercises routes 
 
-router.get('/exercise/:exerciseID', userController.getUserExercise);
+router.get('/user/:id/exercise/', userController.getUserExercise);
 router.post('/user/:id/exercise', userController.addUserExercise);
-router.patch('/exercise/:exerciseId', userController.updateUserExercise);
-router.delete('/exercise/:exerciseId', userController.deleteUserExercise);
+router.patch('/exercise/:id', userController.updateUserExercise);
+router.delete('/exercise/:id', userController.deleteUserExercise);
 
 
 // user diets routes
-// router.get('/user/:id/diets', userController.getUserDiet);
+router.get('/user/:id/diet', userController.getUserDiet);
 router.post('/user/:id/diet', userController.addUserDiet);
-router.patch('/diet/:dietId', userController.updateUserDiet);
-router.delete('/diet/:dietId', userController.deleteUserDiet);
+router.patch('/user/:id/diet', userController.updateUserDiet);
+router.delete('/user/:id/diet', userController.deleteUserDiet);
 
 // Diet routes
 router.get('/diets', dietController.getDiets);
