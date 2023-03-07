@@ -54,3 +54,20 @@
 Make sure to handle errors and show appropriate messages to the user in case of any API errors.
 
 This is a high-level overview of how to build the user interface for your API in Flutter.
+
+
+
+
+
+
+
+
+
+## TODO
+- [] Remove all localhosts from the code and replace them with the actual API URL (http://192.168.15.33:3001/login)
+
+
+## Servidores necessários
+- [ ] Hostear o site
+- [ ] Hostear o banco de dados
+- [ ] Hostear o servidor de processamento interno
