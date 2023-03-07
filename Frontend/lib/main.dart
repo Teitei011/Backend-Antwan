@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:naturalteam/screens/fitness_app_home_screen.dart';
 import 'package:naturalteam/screens/training/training_screen.dart';
+import 'package:naturalteam/screens/welcome_screen.dart';
 import 'screens/login_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -28,14 +29,14 @@ class MyApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
     return MaterialApp(
-      title: 'Bora Treinar?',
+      title: 'NaturalAmI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: FitnessAppHomeScreen(),
+      home: WelcomeScreen(),
       // home: TrainingScreen(),
     );
   }
