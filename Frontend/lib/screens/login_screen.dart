@@ -1,14 +1,9 @@
-import 'dart:convert';
-
-import 'package:naturalteam/fitness_app/components/login_button.dart';
 import 'package:naturalteam/screens/fitness_app_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:naturalteam/app_theme.dart';
-import 'package:naturalteam/fitness_app/components/button.dart';
 import 'package:naturalteam/fitness_app/components/sign_in_google.dart';
-import "package:http/http.dart" as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:naturalteam/utils/login.dart';
 
 const String link = 'http://localhost:3001/';
 
@@ -196,34 +191,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<bool> Login(String email, String password) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  print("email: " + email);
-  print("password: " + password);
-
-  var response = await http.post(Uri.parse("http://192.168.15.33:3001/login"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'email': email,
-        'password': password,
-      }));
-
-  if (response.statusCode == 200) {
-    var jsonResponse = jsonDecode(response.body);
-    await prefs.setString('token', jsonResponse['token']);
-    print(jsonResponse['token']);
-    return true;
-  } else {
-    return false;
-  }
-}
-
-final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-
-bool validateEmail(String email) {
-  return emailRegex.hasMatch(email);
 }
