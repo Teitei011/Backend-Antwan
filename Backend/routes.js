@@ -12,6 +12,7 @@ router.post('/logout', userController.logout);
 
 // User routes
 router.get('/users',  authMiddleware, userController.getUsers);
+router.get("/user/all/:id", authMiddleware, userController.getAllUserData);
 router.get('/user/:id',  authMiddleware, userController.getUser);
 router.post('/user', authMiddleware,  userController.createUser);
 router.patch('/user/:id', authMiddleware,  userController.updateUser);
