@@ -1,6 +1,7 @@
 import 'package:naturalteam/fitness_app/models/tabIcon_data.dart';
 import 'package:naturalteam/screens/training/training_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:naturalteam/utils/allUserInfo.dart';
 import 'diets/diet_screen_grid.dart';
 import 'profile_screen.dart';
 import 'package:naturalteam/fitness_app/bottom_navigation_view/bottom_bar_view.dart';
@@ -17,6 +18,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
   AnimationController? animationController;
 
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
+  List<dynamic> userData = [];
 
   Widget tabBody = Container(
     color: FitnessAppTheme.background,
@@ -67,7 +69,8 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
   }
 
   Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    userData = await fetchUserData();
+    print(userData);
     return true;
   }
 

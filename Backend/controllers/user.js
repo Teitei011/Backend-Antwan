@@ -62,7 +62,10 @@ exports.login = async (req, res) => {
 
     // If passwords match, create JWT token and send success response
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
-    res.status(200).json({ message: 'Successfully logged in', token });
+
+    res.cookie('token', token, { httpOnly: true });
+    console.log(token);
+    res.status(200).json({ message: 'Successfully logged in', token,  user});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });

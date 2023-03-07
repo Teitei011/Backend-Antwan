@@ -23,7 +23,9 @@ Future<bool> Login(String email, String password) async {
   if (response.statusCode == 200) {
     var jsonResponse = jsonDecode(response.body);
     await prefs.setString('token', jsonResponse['token']);
+    await prefs.setString('user', jsonResponse['user']);
     print(jsonResponse['token']);
+    print(jsonResponse['user']);
     return true;
   } else {
     return false;

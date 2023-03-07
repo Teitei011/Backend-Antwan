@@ -22,6 +22,8 @@ class User {
     required this.dietID,
     required this.admin,
   });
+
+  static fromJson(jsonDecode) {}
 }
 
 // user example
