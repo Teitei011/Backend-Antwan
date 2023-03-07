@@ -4,22 +4,38 @@ const Exercise = require("../models/exercise");
 const mongoose = require("mongoose");
 const Diet = require("../models/diet");
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+
 
 exports.signUp = async (req, res) => {
   const { name, email, password } = req.body;
 
-  // Hash the password
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  // Create a new user instance with the hashed password
-  const newUser = new User({ name, email, password: hashedPassword });
-
   try {
-    // Save the user to the database
+    // Check if user already exists
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user with hashed password
+    const newUser = new User({
+      name: name,
+      email: email,
+      password: hashedPassword
+    });
+
+    // Save the new user to the database
     await newUser.save();
+
+    // Send success response
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    res.status(400).json({ message: 'Error creating user', error });
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
@@ -36,9 +52,8 @@ exports.login = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
     // Compare the password with the stored hash
-    const isMatch = await bcrypt.compare(hashedPassword, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
     // If passwords don't match, send error response
     if (!isMatch) {
@@ -46,14 +61,13 @@ exports.login = async (req, res) => {
     }
 
     // If passwords match, create JWT token and send success response
-    const token = createToken(user._id);
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
     res.status(200).json({ message: 'Successfully logged in', token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
 };
-
 
 exports.getUsers = async (req, res) => {
   try {
