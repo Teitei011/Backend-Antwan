@@ -69,6 +69,18 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.logout = async (req, res) => {
+  try {
+    res.clearCookie('token');
+    res.json({ message: 'User logged out successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.find();
