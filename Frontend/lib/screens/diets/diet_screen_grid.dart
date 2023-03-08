@@ -18,7 +18,7 @@ class _DietScreenState extends State<DietScreen> {
       backgroundColor: AppTheme.notWhite,
       body: SafeArea(
         child: ListView(children: [
-          // Large text in the middle saying Sign up to Bora Treinar?
+          // Large text in the middle saying Sign up to NaturalIAm
           const SizedBox(height: 10),
 
           Center(

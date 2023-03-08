@@ -66,10 +66,11 @@ class ExerciseCard extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Image.asset(
-                  list[1][index],
-                  width: 175,
-                  height: 175,
+                Container(
+                  width: 150,
+                  child: Image.asset(
+                    list[1][index],
+                  ),
                 ),
               ],
             ),

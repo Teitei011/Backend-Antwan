@@ -65,7 +65,8 @@ exports.login = async (req, res) => {
 
     res.cookie('token', token, { httpOnly: true });
     console.log(token);
-    res.status(200).json({ message: 'Successfully logged in', token,  user});
+    res.status(200).json({ message: 'Successfully logged in', token: token, userId: user._id });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });

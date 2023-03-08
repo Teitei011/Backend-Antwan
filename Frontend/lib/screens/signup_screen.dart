@@ -16,10 +16,10 @@ class SignUpPage extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             child: Column(children: [
-              // Large text in the middle saying Sign up to Bora Treinar?
+              // Large text in the middle saying Sign up to NaturalIAm
               const SizedBox(height: 10),
 
-              Text("Sign up to Bora Treinar?",
+              Text("Sign up to NaturalIAm",
                   style: TextStyle(
                       color: AppTheme.darkText,
                       fontSize: 30,

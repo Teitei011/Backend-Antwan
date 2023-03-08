@@ -4,14 +4,15 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 Future<bool> Login(String email, String password) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   print("email: " + email);
   print("password: " + password);
 
-  var http;
-  var response = await http.post(Uri.parse("http://192.168.15.33:3001/login"),
+  var link = "http://10.0.2.2:3001/login";
+  var response = await http.post(Uri.parse(link),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -22,9 +23,15 @@ Future<bool> Login(String email, String password) async {
 
   if (response.statusCode == 200) {
     var jsonResponse = jsonDecode(response.body);
-    await prefs.setString('token', jsonResponse['token']);
-    await prefs.setString('user', jsonResponse['user']);
-    print(jsonResponse['token']);
+    // await prefs.setString('token', jsonResponse['token']);
+
+    // convert jsonResponse['user'] to string
+
+    await prefs.setString("id", jsonResponse['user']['_id']);
+    await prefs.setString("name", jsonResponse['user']['name']);
+
+// convert a json object to a string
+
     print(jsonResponse['user']);
     return true;
   } else {

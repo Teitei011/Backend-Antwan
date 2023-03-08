@@ -6,8 +6,17 @@ class BodyMeasurementView extends StatelessWidget {
   final Animation<double>? animation;
 
   const BodyMeasurementView(
-      {Key? key, this.animationController, this.animation})
+      {Key? key,
+      this.animationController,
+      this.animation,
+      this.peso,
+      this.altura,
+      this.idade})
       : super(key: key);
+
+  final String? peso;
+  final String? altura;
+  final String? idade;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +74,7 @@ class BodyMeasurementView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      '53 kg',
+                                      peso! + " kg",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         fontFamily: FitnessAppTheme.fontName,
@@ -100,7 +109,7 @@ class BodyMeasurementView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  '185 cm',
+                                  altura! + " cm",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: FitnessAppTheme.fontName,
@@ -137,7 +146,7 @@ class BodyMeasurementView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Text(
-                                      '27.3 BMI',
+                                      idade! + " anos",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontFamily: FitnessAppTheme.fontName,
@@ -150,7 +159,7 @@ class BodyMeasurementView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        'Sobrepeso',
+                                        'Idade',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: FitnessAppTheme.fontName,

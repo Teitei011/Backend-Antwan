@@ -1,4 +1,4 @@
-import 'package:naturalteam/screens/fitness_app_home_screen.dart';
+import 'package:naturalteam/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:naturalteam/app_theme.dart';
@@ -22,10 +22,10 @@ class LoginPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // Large text in the middle saying Bora Treinar?
+                // Large text in the middle saying NaturalIAm
                 const SizedBox(height: 30),
 
-                Text("Bora Treinar?",
+                Text("NaturalIAm",
                     style: TextStyle(
                         color: AppTheme.darkText,
                         fontSize: 30,
@@ -132,8 +132,7 @@ class LoginPage extends StatelessWidget {
                       if (success) {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => FitnessAppHomeScreen()),
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
                         );
                       } else {
                         _emailController.clear();

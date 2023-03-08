@@ -69,7 +69,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
   }
 
   Future<bool> getData() async {
-    userData = await fetchUserData();
+    // userData = await fetchUserData();
     print(userData);
     return true;
   }
@@ -81,57 +81,57 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
           child: SizedBox(),
         ),
         BottomBarView(
-            tabIconsList: tabIconsList,
-            addClick: () {},
-            changeIndex: (int index) {
-              if (index == 0) {
-                animationController?.reverse().then<dynamic>((data) {
-                  if (!mounted) {
-                    return;
-                  }
-                  setState(() {
-                    tabBody =
-                        MyDiaryScreen(animationController: animationController);
-                  });
+          tabIconsList: tabIconsList,
+          addClick: () {},
+          changeIndex: (int index) {
+            if (index == 0) {
+              animationController?.reverse().then((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody =
+                      MyDiaryScreen(animationController: animationController);
                 });
-              } else if (index == 1) {
-                animationController?.reverse().then<dynamic>((data) {
-                  if (!mounted) {
-                    return;
-                  }
-                  setState(() {
-                    tabBody = TrainingScreen(
-                        animationController: animationController);
-                  });
+              });
+            } else if (index == 1) {
+              animationController?.reverse().then((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody =
+                      TrainingScreen(animationController: animationController);
                 });
-              } else if (index == 2) {
-                animationController?.reverse().then<dynamic>((data) {
-                  if (!mounted) {
-                    return;
-                  }
-                  setState(() {
-                    tabBody = DietScreen();
-                  });
+              });
+            } else if (index == 2) {
+              animationController?.reverse().then((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = DietScreen();
                 });
-              } else if (index == 3) {
-                animationController?.reverse().then<dynamic>((data) {
-                  if (!mounted) {
-                    return;
-                  }
-                  setState(() {
-                    tabBody = ProfilePage(
-                        Nome: "Stefan",
-                        Email: "stefantleal14@gmail.com",
-                        dateOfBirth: "24/08/1998",
-                        height: "169",
-                        weight: "53",
-                        animationController: animationController);
-                  });
+              });
+            } else if (index == 3) {
+              animationController?.reverse().then((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = ProfilePage(
+                    Nome: "Stefan",
+                    Email: "stefantleal14@gmail.com",
+                    dateOfBirth: "24/08/1998",
+                    height: "169",
+                    weight: "53",
+                    animationController: animationController,
+                  );
                 });
-              }
-
-              ;
-            }),
+              });
+            }
+          },
+        ),
       ],
     );
   }

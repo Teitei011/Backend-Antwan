@@ -64,7 +64,14 @@ This is a high-level overview of how to build the user interface for your API in
 
 
 ## TODO
-- [] Remove all localhosts from the code and replace them with the actual API URL (http://192.168.15.33:3001/login)
+- [] Remove all localhosts from the code and replace them with the actual API URL (http://192.168.15.33:3001/login WaterView(
+        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+            CurvedAnimation(
+                parent: widget.animationController!,
+                curve: Interval((1 / count) * 7, 1.0,
+                    curve: Curves.fastOutSlowIn))),
+        mainScreenAnimationController: widget.animationController!,
+      ),)
 
 
 ## Servidores necessários

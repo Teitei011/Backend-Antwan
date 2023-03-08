@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../app_theme.dart';
 import '../../screens/diets/diet_screen.dart';
 
