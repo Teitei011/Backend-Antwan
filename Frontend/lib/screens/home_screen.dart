@@ -4,8 +4,6 @@ import 'package:naturalteam/app_theme.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
 import 'package:naturalteam/fitness_app/components/meal_card.dart';
 import 'package:naturalteam/fitness_app/models/tabIcon_data.dart';
-import 'package:naturalteam/fitness_app/my_diary/water_view.dart';
-import 'package:naturalteam/fitness_app/ui_view/body_measurement.dart';
 import 'package:naturalteam/screens/training/training_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:naturalteam/utils/allUserInfo.dart';
@@ -23,19 +21,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  List<Map<String, dynamic>> _data = [];
-
+  late final Map<String, dynamic> data;
   AnimationController? animationController;
+
+  HomeScreenState();
 
   @override
   void initState() {
     super.initState();
-    fetchUserData().then((data) {
+    fetchUserData().then((dataFromServer) {
       setState(() {
-        List<dynamic> jsonData = json.decode(data);
-        for (var item in jsonData) {
-          _data.add(Map<String, dynamic>.from(item));
-        }
+        // data = jsonDecode(dataFromServer);
+        data = jsonDecode(dataFromServer);
       });
     });
   }
@@ -200,6 +197,16 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
           ),
+          Column(
+            children: [
+              Text(data["user"]["name"]),
+              Text(data["user"]["email"]),
+              // Text(data["user"]["dateOfBirth"] != null ? data : "N/A"),
+              Text(data?["user"]["dateOfBirth"].toString() ?? 'N/A'),
+              Text(data?["user"]["height"].toString() ?? 'N/A'),
+              Text(data?["user"]["weight"].toString() ?? 'N/A'),
+            ],
+          ),
           Expanded(child: Container()),
           BottomBarView(
             tabIconsList: TabIconData.tabIconsList,
@@ -223,16 +230,20 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   MaterialPageRoute<dynamic>(
                       builder: (BuildContext context) => DietScreen()),
                 );
-              } else if (index == 2) {
+              } else if (index == 3) {
                 Navigator.push<dynamic>(
                   context,
                   MaterialPageRoute<dynamic>(
                       builder: (BuildContext context) => ProfilePage(
-                          Nome: _data[0]['name'],
-                          Email: _data[0]['email'],
-                          dateOfBirth: _data[0]['dateOfBirth'],
-                          height: _data[0]['height'],
-                          weight: _data[0]['weight'])),
+                            name: data?["user"]["name"].toString() ?? 'N/A',
+                            email: data?["user"]["email"].toString() ?? 'N/A',
+                            dateOfBirth:
+                                data?["user"]["dateOfBirth"].toString() ??
+                                    'N/A',
+                            height: data?["user"]["height"].toString() ?? 'N/A',
+                            weight: data?["user"]["weight"].toString() ?? 'N/A',
+                          ),
+                      fullscreenDialog: true),
                 );
               }
             },

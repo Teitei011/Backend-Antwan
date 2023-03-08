@@ -5,14 +5,14 @@ import 'package:naturalteam/app_theme.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage(
       {Key? key,
-      required this.Nome,
-      required this.Email,
+      required this.name,
+      required this.email,
       required this.dateOfBirth,
       required this.height,
       required this.weight,
       this.animationController})
       : super(key: key);
-  final String Nome, Email, dateOfBirth, height, weight;
+  final String name, email, dateOfBirth, height, weight;
   final AnimationController? animationController;
 
   @override
@@ -32,13 +32,13 @@ class ProfilePage extends StatelessWidget {
                   duration: Duration(seconds: 1),
                 ),
                 const SizedBox(height: 150),
-                Text(Nome,
+                Text(name,
                     style: TextStyle(
                         color: AppTheme.darkText,
                         fontSize: 20,
                         fontWeight: FontWeight.bold)),
                 const SizedBox(height: 15),
-                Text(Email,
+                Text(email,
                     style: TextStyle(
                         color: AppTheme.darkText,
                         fontSize: 15,
@@ -50,13 +50,13 @@ class ProfilePage extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.bold)),
                 const SizedBox(height: 15),
-                Text("Altura: " + height + "cm",
+                Text("Altura: " + height + " cm",
                     style: TextStyle(
                         color: AppTheme.darkText,
                         fontSize: 15,
                         fontWeight: FontWeight.bold)),
                 const SizedBox(height: 15),
-                Text("Peso: " + weight + "kg",
+                Text("Peso: " + weight + " kg",
                     style: TextStyle(
                         color: AppTheme.darkText,
                         fontSize: 15,
