@@ -120,8 +120,8 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                 }
                 setState(() {
                   tabBody = ProfilePage(
-                    Nome: "Stefan",
-                    Email: "stefantleal14@gmail.com",
+                    name: "Stefan",
+                    email: "stefantleal14@gmail.com",
                     dateOfBirth: "24/08/1998",
                     height: "169",
                     weight: "53",

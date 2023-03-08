@@ -1,3 +1,4 @@
+import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
 import 'package:flutter/material.dart';
 import 'package:naturalteam/fitness_app/fitness_app_theme.dart';
@@ -75,6 +76,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                 ),
               ),
             ),
+            CustomBottomBarView(),
           ],
         ),
       ),

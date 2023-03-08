@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/models/diet.dart';
 
 import 'package:naturalteam/app_theme.dart';
@@ -84,6 +85,7 @@ class _DietScreenState extends State<DietScreen> {
                 mealType: "Ceia",
                 mealItems: dietTemplate.nightSnack,
               ),
+              CustomBottomBarView(),
             ]),
           )
         ]),

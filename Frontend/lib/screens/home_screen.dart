@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:naturalteam/app_theme.dart';
+import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
 import 'package:naturalteam/fitness_app/components/meal_card.dart';
 import 'package:naturalteam/fitness_app/models/tabIcon_data.dart';
@@ -208,46 +209,7 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ],
           ),
           Expanded(child: Container()),
-          BottomBarView(
-            tabIconsList: TabIconData.tabIconsList,
-            addClick: () {
-              Navigator.push<dynamic>(
-                context,
-                MaterialPageRoute<dynamic>(
-                    builder: (BuildContext context) => MyDiaryScreen()),
-              );
-            },
-            changeIndex: (int index) {
-              if (index == 1) {
-                Navigator.push<dynamic>(
-                  context,
-                  MaterialPageRoute<dynamic>(
-                      builder: (BuildContext context) => TrainingScreen()),
-                );
-              } else if (index == 2) {
-                Navigator.push<dynamic>(
-                  context,
-                  MaterialPageRoute<dynamic>(
-                      builder: (BuildContext context) => DietScreen()),
-                );
-              } else if (index == 3) {
-                Navigator.push<dynamic>(
-                  context,
-                  MaterialPageRoute<dynamic>(
-                      builder: (BuildContext context) => ProfilePage(
-                            name: data?["user"]["name"].toString() ?? 'N/A',
-                            email: data?["user"]["email"].toString() ?? 'N/A',
-                            dateOfBirth:
-                                data?["user"]["dateOfBirth"].toString() ??
-                                    'N/A',
-                            height: data?["user"]["height"].toString() ?? 'N/A',
-                            weight: data?["user"]["weight"].toString() ?? 'N/A',
-                          ),
-                      fullscreenDialog: true),
-                );
-              }
-            },
-          ),
+          CustomBottomBarView(data: data),
         ]),
       ),
     );
