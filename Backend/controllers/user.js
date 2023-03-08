@@ -97,10 +97,10 @@ exports.getUsers = async (req, res) => {
 exports.getAllUserData = async (req, res) => {
   try{
     const id = req.params.id; //get id from token
-    const users = await User.findById(id);
-    const exercises = await Exercise.findById(users.exercises);
-    const diets = await Diet.findById(users.diet);
-    res.json({users, exercises, diets});
+    const user = await User.findById(id);
+    const exercises = await Exercise.findById(user.exercises);
+    const diets = await Diet.findById(user.diet);
+    res.json({user, exercises, diets});
   }catch{
 
   }
