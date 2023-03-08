@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:naturalteam/app_theme.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
 import 'package:naturalteam/fitness_app/components/meal_card.dart';
@@ -21,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  List<dynamic> _data = [];
+  List<Map<String, dynamic>> _data = [];
 
   AnimationController? animationController;
 
@@ -30,8 +32,10 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.initState();
     fetchUserData().then((data) {
       setState(() {
-        _data = data;
-        print(data);
+        List<dynamic> jsonData = json.decode(data);
+        for (var item in jsonData) {
+          _data.add(Map<String, dynamic>.from(item));
+        }
       });
     });
   }

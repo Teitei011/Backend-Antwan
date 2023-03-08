@@ -12,8 +12,11 @@ router.post('/logout', userController.logout);
 
 // User routes
 router.get('/users',   userController.getUsers);
-router.get("/user/all/:id",  userController.getAllUserData);
-router.get('/user/:id',   userController.getUser);
+
+// get user, exercise and diet data
+router.get('/user/all/:id',   userController.getAllUserData);
+// router.get("/user/all/:id",  userController.getAllUserData);
+router.get('/users/:id',   userController.getUser);
 router.post('/user',   userController.createUser);
 router.patch('/user/:id',   userController.updateUser);
 router.delete('/user/:id',   userController.deleteUser);

@@ -95,15 +95,15 @@ exports.getUsers = async (req, res) => {
 };
 
 exports.getAllUserData = async (req, res) => {
-  try {
-    const users = await User.find();
-    const exercises = await Exercise.find();
-    const diets = await Diet.find();
-    res.json({ users, exercises, diets });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+  try{
+    const id = req.params.id; //get id from token
+    const users = await User.findById(id);
+    const exercises = await Exercise.findById(users.exercises);
+    const diets = await Diet.findById(users.diet);
+    res.json({users, exercises, diets});
+  }catch{
 
+  }
 }
 
 exports.getUser = async (req, res) => {
