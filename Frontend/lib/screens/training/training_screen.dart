@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
 import 'package:flutter/material.dart';
 import 'package:naturalteam/fitness_app/fitness_app_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TrainingScreen extends StatefulWidget {
   const TrainingScreen({Key? key, this.animationController}) : super(key: key);
@@ -18,6 +21,16 @@ class _TrainingScreenState extends State<TrainingScreen>
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
+
+  @override
+  Future<void> initState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? jsonString = prefs.getString('myJsonObject');
+
+// convert the JSON string back to a JSON object
+    Map<String, dynamic> data = json.decode(jsonString!);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/models/diet.dart';
 
 import 'package:naturalteam/app_theme.dart';
 import 'package:naturalteam/fitness_app/components/meal_card.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DietScreen extends StatefulWidget {
   const DietScreen({super.key});
@@ -13,6 +16,16 @@ class DietScreen extends StatefulWidget {
 }
 
 class _DietScreenState extends State<DietScreen> {
+  @override
+  Future<void> initState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? jsonString = prefs.getString('myJsonObject');
+
+// convert the JSON string back to a JSON object
+    Map<String, dynamic> data = json.decode(jsonString!);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

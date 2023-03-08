@@ -8,6 +8,7 @@ import 'package:naturalteam/fitness_app/models/tabIcon_data.dart';
 import 'package:naturalteam/screens/training/training_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:naturalteam/utils/allUserInfo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'diets/diet_screen_grid.dart';
 import 'profile_screen.dart';
 import 'package:naturalteam/fitness_app/bottom_navigation_view/bottom_bar_view.dart';
@@ -31,9 +32,16 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     fetchUserData().then((dataFromServer) {
-      setState(() {
+      setState(() async {
         // data = jsonDecode(dataFromServer);
+
         data = jsonDecode(dataFromServer);
+
+        String jsonString = json.encode(data);
+
+// save the JSON string to shared preferences
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('myJsonObject', jsonString);
       });
     });
   }
