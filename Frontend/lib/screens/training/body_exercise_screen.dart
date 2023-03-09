@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:naturalteam/app_theme.dart";
+import "package:naturalteam/fitness_app/components/bottombar_view.dart";
 import 'package:naturalteam/fitness_app/models/exercise.dart';
 
 class BodyExerciseScreen extends StatelessWidget {
@@ -90,6 +91,7 @@ class BodyExerciseScreen extends StatelessWidget {
                       ),
               ),
             ),
+            CustomBottomBarView(),
           ],
         ),
       ),

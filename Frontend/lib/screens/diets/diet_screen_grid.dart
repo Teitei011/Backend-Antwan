@@ -19,7 +19,7 @@ class _DietScreenState extends State<DietScreen> {
   @override
   Future<void> initState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? jsonString = prefs.getString('myJsonObject');
+    String? jsonString = prefs.getString('data');
 
 // convert the JSON string back to a JSON object
     Map<String, dynamic> data = json.decode(jsonString!);

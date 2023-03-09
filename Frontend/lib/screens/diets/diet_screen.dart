@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:naturalteam/app_theme.dart';
+import 'package:naturalteam/fitness_app/bottom_navigation_view/bottom_bar_view.dart';
+import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 
-class MinhaDieta extends StatelessWidget {
+class MinhaDieta extends StatefulWidget {
   final String imagePath;
   final String title;
   final String subtitle;
@@ -13,6 +15,11 @@ class MinhaDieta extends StatelessWidget {
       required this.subtitle});
 
   @override
+  State<MinhaDieta> createState() => _MinhaDietaState();
+}
+
+class _MinhaDietaState extends State<MinhaDieta> {
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Container(
@@ -22,7 +29,7 @@ class MinhaDieta extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(title,
+          Text(widget.title,
               textAlign: TextAlign.center,
               style: TextStyle(
                 decoration: TextDecoration.none,
@@ -34,18 +41,19 @@ class MinhaDieta extends StatelessWidget {
             height: 20,
           ),
           Image.asset(
-            imagePath,
+            widget.imagePath,
             width: 100,
             height: 100,
           ),
           const SizedBox(
             height: 50,
           ),
-          Text(subtitle,
+          Text(widget.subtitle,
               style: TextStyle(
                   color: AppTheme.darkText,
                   fontSize: 17,
                   fontWeight: FontWeight.bold)),
+          BottomBarView(),
         ],
       ),
     ));

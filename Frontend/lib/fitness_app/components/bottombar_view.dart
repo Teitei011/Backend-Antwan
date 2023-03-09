@@ -7,53 +7,49 @@ import "package:naturalteam/screens/profile_screen.dart";
 import "package:naturalteam/screens/training/training_screen.dart";
 
 class CustomBottomBarView extends StatelessWidget {
-  final Map<String, dynamic>? data;
+  const CustomBottomBarView({super.key, this.data});
 
-  const CustomBottomBarView({Key? key, this.data}) : super(key: key);
+  final Map<String, dynamic>? data;
 
   @override
   Widget build(BuildContext context) {
-    return BottomBarView(
-      tabIconsList: TabIconData.tabIconsList,
-      addClick: () {
-        Navigator.push<dynamic>(
-          context,
-          MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) => MyDiaryScreen(),
-          ),
-        );
-      },
-      changeIndex: (int index) {
-        if (index == 1) {
+    return Container(
+      height: 100,
+      child: BottomBarView(
+        tabIconsList: TabIconData.tabIconsList,
+        addClick: () {
           Navigator.push<dynamic>(
             context,
             MaterialPageRoute<dynamic>(
-              builder: (BuildContext context) => TrainingScreen(),
+              builder: (BuildContext context) => MyDiaryScreen(),
             ),
           );
-        } else if (index == 2) {
-          Navigator.push<dynamic>(
-            context,
-            MaterialPageRoute<dynamic>(
-              builder: (BuildContext context) => DietScreen(),
-            ),
-          );
-        } else if (index == 3) {
-          Navigator.push<dynamic>(
-            context,
-            MaterialPageRoute<dynamic>(
-              builder: (BuildContext context) => ProfilePage(
-                name: data?["user"]["name"].toString() ?? 'N/A',
-                email: data?["user"]["email"].toString() ?? 'N/A',
-                dateOfBirth: data?["user"]["dateOfBirth"].toString() ?? 'N/A',
-                height: data?["user"]["height"].toString() ?? 'N/A',
-                weight: data?["user"]["weight"].toString() ?? 'N/A',
+        },
+        changeIndex: (int index) {
+          if (index == 1) {
+            Navigator.push<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                builder: (BuildContext context) => TrainingScreen(),
               ),
-              fullscreenDialog: true,
-            ),
-          );
-        }
-      },
+            );
+          } else if (index == 2) {
+            Navigator.push<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                builder: (BuildContext context) => DietScreen(),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.push<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                builder: (BuildContext context) => ProfilePage(),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

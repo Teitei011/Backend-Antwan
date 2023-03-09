@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:naturalteam/fitness_app/bottom_navigation_view/bottom_bar_view.dart';
 import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _TrainingScreenState extends State<TrainingScreen>
   @override
   Future<void> initState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? jsonString = prefs.getString('myJsonObject');
+    String? jsonString = prefs.getString('data');
 
 // convert the JSON string back to a JSON object
     Map<String, dynamic> data = json.decode(jsonString!);
@@ -89,7 +90,7 @@ class _TrainingScreenState extends State<TrainingScreen>
                 ),
               ),
             ),
-            CustomBottomBarView(),
+            BottomBarView(),
           ],
         ),
       ),
