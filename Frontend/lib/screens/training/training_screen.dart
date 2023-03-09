@@ -53,46 +53,13 @@ class _TrainingScreenState extends State<TrainingScreen> {
                 future: _dataFuture,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ExerciseCard(index: 0),
-                              ExerciseCard(index: 1),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ExerciseCard(index: 2),
-                              ExerciseCard(index: 3),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ExerciseCard(index: 4),
-                              ExerciseCard(index: 5),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ExerciseCard(index: 6),
-                              ExerciseCard(index: 7),
-                            ],
-                          ),
-                        ],
-                      ),
+                    return GridView.count(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.0,
+                      padding: EdgeInsets.only(left: 16, right: 16, top: 2),
+                      children: List.generate(8, (index) {
+                        return ExerciseCard(index: index);
+                      }),
                     );
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');

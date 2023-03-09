@@ -48,8 +48,8 @@ class ExerciseCard extends StatelessWidget {
           ),
         )
       },
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(50),
+      child: SizedBox(
+        height: 200,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -66,10 +66,10 @@ class ExerciseCard extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
-                  width: 150,
+                Expanded(
                   child: Image.asset(
                     list[1][index],
+                    fit: BoxFit.contain,
                   ),
                 ),
               ],
