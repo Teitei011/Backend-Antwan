@@ -3,11 +3,12 @@ import "package:naturalteam/fitness_app/bottom_navigation_view/bottom_bar_view.d
 import "package:naturalteam/fitness_app/models/tabIcon_data.dart";
 import "package:naturalteam/fitness_app/my_diary/my_diary_screen.dart";
 import "package:naturalteam/screens/diets/diet_screen_grid.dart";
+import "package:naturalteam/screens/home_screen.dart";
 import "package:naturalteam/screens/profile_screen.dart";
 import "package:naturalteam/screens/training/training_screen.dart";
 
 class CustomBottomBarView extends StatelessWidget {
-  const CustomBottomBarView({super.key, this.data});
+  const CustomBottomBarView({Key? key, this.data});
 
   final Map<String, dynamic>? data;
 
@@ -21,11 +22,19 @@ class CustomBottomBarView extends StatelessWidget {
           Navigator.push<dynamic>(
             context,
             MaterialPageRoute<dynamic>(
-              builder: (BuildContext context) => MyDiaryScreen(),
+              builder: (BuildContext context) => HomeScreen(),
             ),
           );
         },
         changeIndex: (int index) {
+          if (index == 0) {
+            Navigator.push<dynamic>(
+                context,
+                MaterialPageRoute<dynamic>(
+                  builder: (BuildContext context) => HomeScreen(),
+                ));
+          }
+
           if (index == 1) {
             Navigator.push<dynamic>(
               context,

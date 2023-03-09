@@ -53,7 +53,7 @@ class _MinhaDietaState extends State<MinhaDieta> {
                   color: AppTheme.darkText,
                   fontSize: 17,
                   fontWeight: FontWeight.bold)),
-          BottomBarView(),
+          Material(child: CustomBottomBarView()),
         ],
       ),
     ));

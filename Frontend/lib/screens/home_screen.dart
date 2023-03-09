@@ -4,16 +4,10 @@ import 'package:naturalteam/app_theme.dart';
 import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
 import 'package:naturalteam/fitness_app/components/meal_card.dart';
-import 'package:naturalteam/fitness_app/models/tabIcon_data.dart';
-import 'package:naturalteam/screens/training/training_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:naturalteam/utils/allUserInfo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'diets/diet_screen_grid.dart';
-import 'profile_screen.dart';
-import 'package:naturalteam/fitness_app/bottom_navigation_view/bottom_bar_view.dart';
 import 'package:naturalteam/fitness_app/fitness_app_theme.dart';
-import 'package:naturalteam/fitness_app/my_diary/my_diary_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
