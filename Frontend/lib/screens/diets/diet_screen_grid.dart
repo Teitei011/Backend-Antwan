@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
-import 'package:naturalteam/fitness_app/models/diet.dart';
 
 import 'package:naturalteam/app_theme.dart';
 import 'package:naturalteam/fitness_app/components/meal_card.dart';
@@ -32,6 +31,8 @@ class _DietScreenState extends State<DietScreen> {
       setState(() {
         _data = json.decode(jsonString);
       });
+
+      print(_data);
     }
   }
 

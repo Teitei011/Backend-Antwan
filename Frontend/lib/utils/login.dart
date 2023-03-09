@@ -26,9 +26,10 @@ Future<bool> Login(String email, String password) async {
     // await prefs.setString('token', jsonResponse['token']);
 
     // convert jsonResponse['user'] to string
-
-    await prefs.setString("id", jsonResponse['user']['_id']);
-    await prefs.setString("name", jsonResponse['user']['name']);
+    print("\n\n\n\n\n");
+    print(jsonResponse);
+    await prefs.setString("id", jsonResponse['userId']['_id']);
+    await prefs.setString("name", jsonResponse['userId']['name']);
 
 // convert a json object to a string
 

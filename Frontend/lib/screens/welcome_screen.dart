@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:naturalteam/screens/home_screen.dart';
 import "package:naturalteam/screens/login_screen.dart";
+import "package:naturalteam/utils/clear_cache.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
 class WelcomeScreen extends StatefulWidget {
@@ -10,6 +11,8 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   void initState() {
     super.initState();
+    // clearSharedPreferences();
+
     verificarToken().then((value) {
       if (value) {
         Navigator.pushReplacement(
@@ -38,6 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 verificarToken() async {
   final prefs = await SharedPreferences.getInstance();
   final token = prefs.getString("id");
+
   if (token == null) {
     return false;
   } else {
