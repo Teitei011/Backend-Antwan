@@ -29,7 +29,6 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('data', jsonString);
-
     return decodedData;
   }
 

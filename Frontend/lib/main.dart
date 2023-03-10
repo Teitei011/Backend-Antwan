@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:naturalteam/screens/home_screen.dart';
 import 'package:naturalteam/screens/training/training_screen.dart';
 import 'package:naturalteam/screens/welcome_screen.dart';
+import 'screens/diets/diet_screen_grid.dart';
 import 'screens/login_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
       ),
       home: WelcomeScreen(),
+      // home: DietScreen(),
       // home: TrainingScreen(),
     );
   }

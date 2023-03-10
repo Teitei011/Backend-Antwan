@@ -1,0 +1,81 @@
+{
+  "user": {
+    "_id": "6409e71481815eede1e33a38",
+    "name": "Teitoso",
+    "email": "couperusleal@gmail.com",
+    "password": "$2a$10$1oCUHr/mUSth2ynL30IGZupVENyacBIYfEwmFuOLoTn91g1e3ADCS",
+    "googleId": "1",
+    "dateOfBirth": "1998-08-24T00:00:00.000Z",
+    "height": 171,
+    "weight": 53,
+    "admin": true,
+    "__v": 0,
+    "exercises": "64028a51b4a147b29528f655",
+    "diet": "6402871bb4a147b29528f631"
+  },
+  "exercises": {
+    "_id": "64028a51b4a147b29528f655",
+    "A": [],
+    "B": [],
+    "C": [],
+    "D": [],
+    "E": [],
+    "F": [],
+    "G": [],
+    "H": [],
+    "__v": 0
+  },
+  "diets": {
+    "_id": "6402871bb4a147b29528f631",
+    "breakfast": [
+      {
+        "title": "Omelete",
+        "subtitle": "Omelete com queijo",
+        "_id": "6402871bb4a147b29528f632"
+      }
+    ],
+    "postWorkout": [
+      {
+        "title": "Batata doce",
+        "subtitle": "Batata doce com frango",
+        "_id": "6402871bb4a147b29528f633"
+      }
+    ],
+    "morningSnack": [
+      {
+        "title": "Pão de queijo",
+        "subtitle": "Pão de queijo com queijo",
+        "_id": "6402871bb4a147b29528f634"
+      }
+    ],
+    "lunch": [
+      {
+        "title": "Arroz",
+        "subtitle": "Arroz com feijão",
+        "_id": "6402871bb4a147b29528f635"
+      }
+    ],
+    "afternoonSnack": [
+      {
+        "title": "Pão de queijo",
+        "subtitle": "Pão de queijo com queijo",
+        "_id": "6402871bb4a147b29528f636"
+      }
+    ],
+    "dinner": [
+      {
+        "title": "Arroz",
+        "subtitle": "Arroz com feijão",
+        "_id": "6402871bb4a147b29528f637"
+      }
+    ],
+    "nightSnack": [
+      {
+        "title": "Pão de queijo",
+        "subtitle": "Pão de queijo com queijo",
+        "_id": "6402871bb4a147b29528f638"
+      }
+    ],
+    "__v": 0
+  }
+}

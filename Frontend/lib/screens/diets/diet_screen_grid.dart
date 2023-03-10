@@ -8,8 +8,7 @@ import 'package:naturalteam/fitness_app/components/meal_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DietScreen extends StatefulWidget {
-  const DietScreen({super.key});
-
+  const DietScreen({Key? key}) : super(key: key);
   @override
   State<DietScreen> createState() => _DietScreenState();
 }
@@ -33,11 +32,14 @@ class _DietScreenState extends State<DietScreen> {
       });
 
       print(_data);
+      // print(jsonEncode(jsonString));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    print("Morning Snack" +
+        _data["diets"]["morningSnack"][0]["title"].toString());
     return Scaffold(
       backgroundColor: AppTheme.notWhite,
       body: SafeArea(
@@ -73,37 +75,43 @@ class _DietScreenState extends State<DietScreen> {
                       return MealCard(
                         imagePath: 'assets/fitness_app/morningSnack.png',
                         mealType: "Café da manhã",
-                        mealItems: [],
+                        mealItems: _data["diets"]["morningSnack"],
                       );
                     case 1:
                       return MealCard(
                         imagePath: 'assets/fitness_app/nightSnack.png',
                         mealType: "Pós Treino",
-                        mealItems: [],
+                        mealItems: _data["diets"]["nightSnack"],
                       );
                     case 2:
                       return MealCard(
                         imagePath: 'assets/fitness_app/breakfast.png',
                         mealType: "Lanche da manhã",
-                        mealItems: [],
+                        mealItems: _data["diets"]["breakfast"],
                       );
                     case 3:
                       return MealCard(
                         imagePath: 'assets/fitness_app/lunch.png',
                         mealType: "Almoço",
-                        mealItems: [],
+                        mealItems: _data["diets"]["lunch"],
                       );
                     case 4:
                       return MealCard(
                         imagePath: 'assets/fitness_app/snack.png',
                         mealType: "Lanche da tarde",
-                        mealItems: [],
+                        mealItems: _data["diets"]["afternoonSnack"],
                       );
                     case 5:
                       return MealCard(
                         imagePath: 'assets/fitness_app/dinner.png',
                         mealType: "Janta",
-                        mealItems: [],
+                        mealItems: _data["diets"]["dinner"],
+                      );
+                    case 6:
+                      return MealCard(
+                        imagePath: 'assets/fitness_app/nightSnack.png',
+                        mealType: "Ceia",
+                        mealItems: _data["diets"]["nightSnack"],
                       );
                     default:
                       throw Exception("Unknown index $index");
