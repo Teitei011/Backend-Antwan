@@ -62,7 +62,7 @@ class _DietScreenState extends State<DietScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: 6,
+                itemCount: 7,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 10,
