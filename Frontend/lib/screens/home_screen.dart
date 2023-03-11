@@ -5,30 +5,39 @@ import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
 import 'package:naturalteam/fitness_app/components/meal_card.dart';
 import 'package:flutter/material.dart';
+import 'package:naturalteam/fitness_app/models/exercise.dart';
 import 'package:naturalteam/utils/allUserInfo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:naturalteam/fitness_app/fitness_app_theme.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
+  const HomeScreen({Key? key}) : super(key: key);
   @override
   State<HomeScreen> createState() => HomeScreenState();
 }
 
 class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late final Map<String, dynamic> data;
+  // late Map<String, List<Map<String, String>>> _data = {};
   AnimationController? animationController;
+  late Exercise exercises;
 
   HomeScreenState();
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
 
   Future<Map<String, dynamic>> _fetchData() async {
     final dataFromServer = await fetchUserData();
     final decodedData = jsonDecode(dataFromServer);
     final jsonString = json.encode(decodedData);
+    exercises = Exercise.fromJson(decodedData['exercises']);
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('data', jsonString);
+
     return decodedData;
   }
 
@@ -189,24 +198,31 @@ class HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   children: [
                                     ExerciseCard(
                                       index: 0,
+                                      exercises: exercises,
                                     ),
                                     ExerciseCard(
                                       index: 1,
+                                      exercises: exercises,
                                     ),
                                     ExerciseCard(
                                       index: 2,
+                                      exercises: exercises,
                                     ),
                                     ExerciseCard(
                                       index: 3,
+                                      exercises: exercises,
                                     ),
                                     ExerciseCard(
                                       index: 4,
+                                      exercises: exercises,
                                     ),
                                     ExerciseCard(
                                       index: 6,
+                                      exercises: exercises,
                                     ),
                                     ExerciseCard(
                                       index: 7,
+                                      exercises: exercises,
                                     ),
                                   ],
                                 ),

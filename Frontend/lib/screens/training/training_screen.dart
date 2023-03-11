@@ -1,10 +1,10 @@
-import 'dart:convert';
-
 import 'package:naturalteam/fitness_app/components/bottombar_view.dart';
 import 'package:naturalteam/fitness_app/components/exercise_card.dart';
-import 'package:flutter/material.dart';
 import 'package:naturalteam/fitness_app/fitness_app_theme.dart';
+import 'package:naturalteam/fitness_app/models/exercise.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
+import 'dart:convert';
 
 class TrainingScreen extends StatefulWidget {
   const TrainingScreen({Key? key, this.animationController}) : super(key: key);
@@ -15,19 +15,26 @@ class TrainingScreen extends StatefulWidget {
 }
 
 class _TrainingScreenState extends State<TrainingScreen> {
-  Future<Map<String, dynamic>>? _dataFuture;
+  late Map<String, dynamic> _data;
+  late Exercise exercises =
+      Exercise(A: [], B: [], C: [], D: [], E: [], F: [], G: [], H: [], id: "");
 
   @override
   void initState() {
     super.initState();
-    _dataFuture = _getData();
+    _loadData();
   }
 
-  Future<Map<String, dynamic>> _getData() async {
+  Future<void> _loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jsonString = prefs.getString('data');
 
-    return json.decode(jsonString!);
+    if (jsonString != null) {
+      setState(() {
+        _data = json.decode(jsonString);
+        exercises = Exercise.fromJson(_data);
+      });
+    }
   }
 
   @override
@@ -50,7 +57,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
             ),
             Expanded(
               child: FutureBuilder<Map<String, dynamic>>(
-                future: _dataFuture,
+                future: Future.value(_data),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return GridView.count(
@@ -58,7 +65,10 @@ class _TrainingScreenState extends State<TrainingScreen> {
                       childAspectRatio: 1.0,
                       padding: EdgeInsets.only(left: 16, right: 16, top: 2),
                       children: List.generate(8, (index) {
-                        return ExerciseCard(index: index);
+                        return ExerciseCard(
+                          index: index,
+                          exercises: exercises,
+                        );
                       }),
                     );
                   } else if (snapshot.hasError) {

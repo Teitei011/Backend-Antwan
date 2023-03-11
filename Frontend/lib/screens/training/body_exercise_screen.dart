@@ -3,7 +3,7 @@ import "package:naturalteam/app_theme.dart";
 import "package:naturalteam/fitness_app/components/bottombar_view.dart";
 import 'package:naturalteam/fitness_app/models/exercise.dart';
 
-class BodyExerciseScreen extends StatelessWidget {
+class BodyExerciseScreen extends StatefulWidget {
   const BodyExerciseScreen({
     Key? key,
     required this.imagePath,
@@ -18,11 +18,18 @@ class BodyExerciseScreen extends StatelessWidget {
   final String exerciseType;
 
   @override
+  State<BodyExerciseScreen> createState() => _BodyExerciseScreenState();
+}
+
+class _BodyExerciseScreenState extends State<BodyExerciseScreen> {
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final bool thereIsData = false;
-
-    print("Tamanho da lista:  $exercises.exercises[exerciseType]!.length");
-
+    print("Exercises: " + widget.exercises.toString());
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -35,7 +42,7 @@ class BodyExerciseScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 100.0),
                 child: Text(
-                  titleTxt,
+                  widget.titleTxt,
                   style: const TextStyle(
                     decoration: TextDecoration.none,
                     color: AppTheme.darkText,
@@ -51,47 +58,43 @@ class BodyExerciseScreen extends StatelessWidget {
                 height: 125,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(imagePath),
+                    image: AssetImage(widget.imagePath),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 50,
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Expanded(
-                child: Container(
-                  child: !thereIsData
-                      ? ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: exercises.exercises[exerciseType]!.length,
-                          itemBuilder: (context, index) {
-                            final exercise =
-                                exercises.exercises[exerciseType]![index];
-                            print("exercise: $exercise");
-                            return Material(
-                              child: ListTile(
-                                title: Text(exercise['title']!),
-                                subtitle: Text(exercise['subtitle']!),
-                              ),
-                            );
-                          },
-                        )
-                      : Text(
-                          "No Exercises",
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: AppTheme.darkText,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                ),
-              ),
+              // Expanded(
+              //   child: Container(
+              //     child: !thereIsData
+              //         ? ListView.builder(
+              //             shrinkWrap: true,
+              //             itemCount: widget
+              //                 .exercises.exercises[widget.exerciseType]!.length,
+              //             itemBuilder: (context, index) {
+              //               final exercise = widget.exercises
+              //                   .exercises[widget.exerciseType]![index];
+              //               return Material(
+              //                 child: ListTile(
+              //                   title: Text(exercise['title']!),
+              //                   subtitle: Text(exercise['subtitle']!),
+              //                 ),
+              //               );
+              //             },
+              //           )
+              //         : Text(
+              //             "No Exercises",
+              //             style: TextStyle(
+              //               fontSize: 22,
+              //               color: AppTheme.darkText,
+              //               fontWeight: FontWeight.bold,
+              //             ),
+              //           ),
+              //   ),
+              // ),
+
+              Expanded(child: Container()),
               Material(child: CustomBottomBarView()),
             ],
           ),

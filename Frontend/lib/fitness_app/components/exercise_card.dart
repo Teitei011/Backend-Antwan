@@ -28,9 +28,14 @@ List list = [
 ];
 
 class ExerciseCard extends StatelessWidget {
-  const ExerciseCard({Key? key, required this.index}) : super(key: key);
+  const ExerciseCard({
+    Key? key,
+    required this.index,
+    required this.exercises,
+  }) : super(key: key);
 
   final int index;
+  final Exercise exercises;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,7 @@ class ExerciseCard extends StatelessWidget {
             builder: (context) => BodyExerciseScreen(
               imagePath: list[1][index],
               titleTxt: list[0][index],
-              exercises: Exercise(exercises: exerciciosTemplate.exercises),
+              exercises: exercises,
               exerciseType: list[2][index],
             ),
           ),
